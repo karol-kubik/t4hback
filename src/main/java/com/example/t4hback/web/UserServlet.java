@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * ControllerServlet.java
@@ -56,9 +57,6 @@ public class UserServlet extends HttpServlet {
                 case "/update":
                     this.updateUser(request, response);
                     break;
-                case "/list":
-                    this.listUser(request, response);
-                    break;
                 default:
                     this.listUser(request, response);
                     break;
@@ -101,7 +99,7 @@ public class UserServlet extends HttpServlet {
         String birthday = request.getParameter("birthday");
         Boolean gender = Boolean.valueOf(request.getParameter("gender"));
         Integer phone = Integer.valueOf(request.getParameter("phone"));
-        Boolean admin = Boolean.valueOf(request.getParameter("admin"));
+        Boolean admin = false;
         User newUser = new User(email, password, firstname, lastname, birthday, gender, phone, admin);
         userDAO.insertUser(newUser);
         response.sendRedirect("list");
@@ -109,7 +107,8 @@ public class UserServlet extends HttpServlet {
 
     private void updateUser(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
+        HttpSession s = request.getSession(true);
+        Integer id = (Integer) s.getAttribute("id");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String firstname = request.getParameter("firstname");
@@ -117,7 +116,7 @@ public class UserServlet extends HttpServlet {
         String birthday = request.getParameter("birthday");
         Boolean gender = Boolean.valueOf(request.getParameter("gender"));
         Integer phone = Integer.valueOf(request.getParameter("phone"));
-        Boolean admin = Boolean.valueOf(request.getParameter("admin"));
+        Boolean admin = false;
 
         User book = new User(id, email, password, firstname, lastname, birthday, gender, phone, admin);
         userDAO.updateUser(book);
@@ -126,10 +125,44 @@ public class UserServlet extends HttpServlet {
 
     private void deleteUser(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
+        HttpSession s = request.getSession(true);
+        Integer id = (Integer) s.getAttribute("id");
         userDAO.deleteUser(id);
         response.sendRedirect("list");
 
+    }
+
+    private void showLoginForm(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession s = request.getSession(true);
+        if(s.isNew()){
+            RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+            dispatcher.forward(request, response);
+        }
+        else{
+            RequestDispatcher dispatcher = request.getRequestDispatcher("account");
+            dispatcher.forward(request, response);
+        }
+    }
+
+    private void loginUser(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException {
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        User resultUser = userDAO.selectUserByMailPassword(email, password);
+        if(resultUser != null){
+            HttpSession s = request.getSession(true);
+            s.setAttribute("email", resultUser.getEmail());
+            s.setAttribute("password", resultUser.getPassword());
+            s.setAttribute("id", resultUser.getId());
+            s.setAttribute("admin", resultUser.getAdmin());
+            response.sendRedirect("list");
+        }
+        else {
+            String error = "Wrong credentials.";
+            request.setAttribute("errorMessage", error);
+            response.sendRedirect("login");
+        }
     }
 
 }

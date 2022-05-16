@@ -1,6 +1,7 @@
 package com.example.t4hback.dao;
 
 import com.example.t4hback.model.Housing;
+import com.example.t4hback.model.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -61,19 +62,23 @@ public class HousingDAO {
         }
     }
 
-    public Housing selectHousingById(int id_housing) {
-        Housing housing = null;
+    public List<Housing> selectHousingsByID(int id) {
+
+        // using try-with-resources to avoid closing resources (boiler plate code)
+        List<Housing> housings = new ArrayList<>();
         // Step 1: Establishing a Connection
         try (Connection connection = getConnection();
+
              // Step 2:Create a statement using connection object
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_HOUSINGS_BY_ID);) {
-            preparedStatement.setInt(1, id_housing);
+            preparedStatement.setInt(1,id);
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
             ResultSet rs = preparedStatement.executeQuery();
 
             // Step 4: Process the ResultSet object.
             while (rs.next()) {
+                Integer id_housing = rs.getInt("id_housing");
                 Integer id_owner = rs.getInt("id_owner");
                 String title = rs.getString("title");
                 String address = rs.getString("address");
@@ -86,12 +91,12 @@ public class HousingDAO {
                 Boolean petKeep = rs.getBoolean("petKeep");
                 Boolean plantWater = rs.getBoolean("plantWater");
                 Boolean houseClean = rs.getBoolean("houseClean");
-                housing = new Housing(id_housing,id_owner, title, address, city, description, noSmoke, noiseCurfew, noChild, noPets, petKeep, plantWater, houseClean);
+                housings.add(new Housing(id_housing,id_owner, title, address, city, description, noSmoke, noiseCurfew, noChild, noPets, petKeep, plantWater, houseClean));
             }
         } catch (SQLException e) {
             printSQLException(e);
         }
-        return housing;
+        return housings;
     }
 
     public List<Housing> selectAllHousings() {
@@ -130,7 +135,41 @@ public class HousingDAO {
         return housings;
     }
 
-    public List<Housing> selectHousingsByCity() {
+    public Housing selectHousingByHousingID(int id) {
+        Housing housing = null;
+        // Step 1: Establishing a Connection
+        try (Connection connection = getConnection();
+             // Step 2:Create a statement using connection object
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_HOUSINGS_BY_ID);) {
+            preparedStatement.setInt(1, id);
+            System.out.println(preparedStatement);
+            // Step 3: Execute the query or update query
+            ResultSet rs = preparedStatement.executeQuery();
+
+            // Step 4: Process the ResultSet object.
+            while (rs.next()) {
+                Integer id_housing = rs.getInt("id_housing");
+                Integer id_owner = rs.getInt("id_owner");
+                String title = rs.getString("title");
+                String address = rs.getString("address");
+                String city = rs.getString("city");
+                String description = rs.getString("description");
+                Boolean noSmoke = rs.getBoolean("noSmoke");
+                Boolean noiseCurfew = rs.getBoolean("noiseCurfew");
+                Boolean noChild = rs.getBoolean("noChild");
+                Boolean noPets = rs.getBoolean("noPets");
+                Boolean petKeep = rs.getBoolean("petKeep");
+                Boolean plantWater = rs.getBoolean("plantWater");
+                Boolean houseClean = rs.getBoolean("houseClean");
+                housing = new Housing(id_housing,id_owner, title, address, city, description, noSmoke, noiseCurfew, noChild, noPets, petKeep, plantWater, houseClean);
+            }
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
+        return housing;
+    }
+
+    public List<Housing> selectHousingsByCity(String enteredCity) {
 
         // using try-with-resources to avoid closing resources (boiler plate code)
         List<Housing> housings = new ArrayList<>();
@@ -139,6 +178,7 @@ public class HousingDAO {
 
              // Step 2:Create a statement using connection object
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_HOUSINGS_BY_CITY);) {
+            preparedStatement.setString(1,enteredCity);
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
             ResultSet rs = preparedStatement.executeQuery();
@@ -166,7 +206,7 @@ public class HousingDAO {
         return housings;
     }
 
-    public List<Housing> selectHousingsByTitle() {
+    public List<Housing> selectHousingsByTitle(String enteredTitle) {
 
         // using try-with-resources to avoid closing resources (boiler plate code)
         List<Housing> housings = new ArrayList<>();
@@ -175,6 +215,7 @@ public class HousingDAO {
 
              // Step 2:Create a statement using connection object
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_HOUSINGS_BY_TITLE);) {
+            preparedStatement.setString(1,enteredTitle);
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
             ResultSet rs = preparedStatement.executeQuery();

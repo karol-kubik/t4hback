@@ -57,7 +57,7 @@ public class UserDAO {
 			preparedStatement.setString(5, user.getBirthday());
 			preparedStatement.setBoolean(6, user.getGender());
 			preparedStatement.setInt(7, user.getPhone());
-			preparedStatement.setBoolean(8, user.getAdmin());
+			preparedStatement.setBoolean(8, false);
 			System.out.println(preparedStatement);
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {

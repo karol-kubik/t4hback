@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -71,6 +72,16 @@ public class HousingServlet extends javax.servlet.http.HttpServlet {
         dispatcherHousing.forward(request, response);
     }
 
+    private void listHousingByOwnerID(javax.servlet.http.HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException, javax.servlet.ServletException {
+        HttpSession s = request.getSession(true);
+        Integer id = (Integer) s.getAttribute("id");
+        List<Housing> listHousing = housingDAO.selectHousingsByID(id);
+        request.setAttribute("listHousing", listHousing);
+        RequestDispatcher dispatcherHousing = request.getRequestDispatcher("user-housing-list.jsp");
+        dispatcherHousing.forward(request, response);
+    }
+
     private void showNewFormHousing(javax.servlet.http.HttpServletRequest request, HttpServletResponse response)
             throws javax.servlet.ServletException, IOException {
         RequestDispatcher dispatcherHousing = request.getRequestDispatcher("housing-list.jsp");
@@ -80,7 +91,7 @@ public class HousingServlet extends javax.servlet.http.HttpServlet {
     private void showEditFormHousing(javax.servlet.http.HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         int id_housing = Integer.parseInt(request.getParameter("id_housing"));
-        Housing existingHousing = housingDAO.selectHousingById(id_housing);
+        Housing existingHousing = housingDAO.selectHousingsByID(id_housing);
         RequestDispatcher dispatcherHousing = request.getRequestDispatcher("housing-form.jsp");
         request.setAttribute("housing", existingHousing);
         dispatcherHousing.forward(request, response);
