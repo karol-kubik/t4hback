@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="t4hback:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>t4hback</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="t4hback-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="t4hback:war exploded" />
+    </root>
+  </artifact>
+</component>
