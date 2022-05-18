@@ -22,7 +22,7 @@ import javax.servlet.http.HttpSession;
  * @email Ramesh Fadatare
  */
 
-@WebServlet(value = "/")
+@WebServlet(name = "userServlet", value = "/user")
 public class UserServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private UserDAO userDAO;
@@ -39,26 +39,27 @@ public class UserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getServletPath();
+        System.out.println("Path = " + action);
 
         try {
             switch (action) {
-                case "/new":
+                case "./new":
                     this.showNewForm(request, response);
                     break;
-                case "/insert":
+                case "./insert":
                     this.insertUser(request, response);
                     break;
-                case "/delete":
+                case "./delete":
                     this.deleteUser(request, response);
                     break;
-                case "/edit":
+                case "./edit":
                     this.showEditForm(request, response);
                     break;
-                case "/update":
+                case "./update":
                     this.updateUser(request, response);
                     break;
                 default:
-                    this.listUser(request, response);
+                    this.loginUser(request, response);
                     break;
             }
         } catch (SQLException ex) {
@@ -146,21 +147,24 @@ public class UserServlet extends HttpServlet {
     }
 
     private void loginUser(HttpServletRequest request, HttpServletResponse response)
-            throws SQLException, IOException {
+            throws SQLException, IOException, ServletException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         User resultUser = userDAO.selectUserByMailPassword(email, password);
+
         if(resultUser != null){
-            HttpSession s = request.getSession(true);
-            s.setAttribute("email", resultUser.getEmail());
-            s.setAttribute("password", resultUser.getPassword());
-            s.setAttribute("id", resultUser.getId());
-            s.setAttribute("admin", resultUser.getAdmin());
-            response.sendRedirect("list");
+            System.out.println("User found.");
+            System.out.println("User ID = " + resultUser.getId());
+            HttpSession session = request.getSession(false);
+            session.setAttribute("email", resultUser.getEmail());
+            session.setAttribute("password", resultUser.getPassword());
+            session.setAttribute("id", new Integer(resultUser.getId()));
+            session.setAttribute("admin", new Boolean(resultUser.getAdmin()));
+            RequestDispatcher dispatcher = request.getRequestDispatcher("account.jsp");
+            dispatcher.forward(request, response);
         }
         else {
-            String error = "Wrong credentials.";
-            request.setAttribute("errorMessage", error);
+            System.out.println("Wrong credentials.");
             response.sendRedirect("login");
         }
     }

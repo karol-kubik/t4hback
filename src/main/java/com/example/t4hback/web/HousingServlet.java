@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet(value = "/housing")
+@WebServlet(name = "housingServlet", value = "/housing")
 public class HousingServlet extends javax.servlet.http.HttpServlet {
     private static final long serialVersionUID = 1L;
     private HousingDAO housingDAO;
@@ -33,6 +33,7 @@ public class HousingServlet extends javax.servlet.http.HttpServlet {
     protected void doGet(javax.servlet.http.HttpServletRequest request, HttpServletResponse response)
             throws javax.servlet.ServletException, IOException {
         String action = request.getServletPath();
+        System.out.println("Path = " + action);
 
         try {
             switch (action) {
@@ -91,7 +92,7 @@ public class HousingServlet extends javax.servlet.http.HttpServlet {
     private void showEditFormHousing(javax.servlet.http.HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         int id_housing = Integer.parseInt(request.getParameter("id_housing"));
-        Housing existingHousing = housingDAO.selectHousingsByID(id_housing);
+        Housing existingHousing = housingDAO.selectHousingByHousingID(id_housing);
         RequestDispatcher dispatcherHousing = request.getRequestDispatcher("housing-form.jsp");
         request.setAttribute("housing", existingHousing);
         dispatcherHousing.forward(request, response);

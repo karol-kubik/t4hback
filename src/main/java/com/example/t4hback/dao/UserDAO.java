@@ -18,9 +18,9 @@ public class UserDAO {
 	private String jdbcUsername = "root";
 	private String jdbcPassword = "root";
 
-	private static final String INSERT_USERS_SQL = "INSERT INTO users" + "  (email, password, firstname, lastname, birthday, gender, phone, admin) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
-	private static final String SELECT_USER_BY_ID = "select email, password, firstname, lastname, birthday, gender, phone, admin from users where id =?";
-	private static final String SELECT_USER_BY_MAIL_PASSWORD = "select id, email, password, firstname, lastname, birthday, gender, phone, admin from users where email =? & password =?";
+	private static final String INSERT_USERS_SQL = "INSERT INTO users(email, password, firstname, lastname, birthday, gender, phone, admin) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+	private static final String SELECT_USER_BY_ID = "SELECT * FROM `users` WHERE `id` =?;";
+	private static final String SELECT_USER_BY_MAIL_PASSWORD = "SELECT * FROM `users` WHERE `email` = ? AND `password` = ?;";
 	private static final String UPDATE_USERS_SQL = "update users set email = ?,password= ?, firstname =?, lastname =?, birthday =?, gender =?, phone =?, admin =? where id = ?;";
 
 	//ADMIN FUNCTIONS
