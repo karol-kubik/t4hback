@@ -12,5 +12,6 @@
 </head>
 <body>
 <h1>You are connected.</h1>
+<a href="create_housing.jsp">Create a housing</a><br>
 </body>
 </html>

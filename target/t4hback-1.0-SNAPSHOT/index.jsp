@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>JSP - Hello World</title>
+    <title>Task4home</title>
 </head>
 <body>
-<h1><%= "Hello World!" %>
+<h1><%= "Task4Home" %>
 </h1>
 <br/>
-<a href="/t4hback_war_exploded/list">User list</a>
-<a href="/t4hback_war_exploded/housing/list">Housing list</a>
+<a href="/t4hback_war_exploded/login">Login</a><br>
+<a href="/t4hback_war_exploded/signup.jsp">Create an account</a><br>
 </body>
 </html>
