@@ -36,14 +36,6 @@
 					</h2>
 				</caption>
 
-					<caption>
-						<h5>
-							<c:if test="${user.error != true}">
-								Wrong credentials.
-							</c:if>
-						</h5>
-					</caption>
-
 				<fieldset class="form-group">
 					<label>Email</label> <input type="text"
 						value="<c:out value='${user.email}' />" class="form-control"

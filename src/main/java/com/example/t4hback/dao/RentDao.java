@@ -19,6 +19,7 @@ public class RentDao {
     private static final String SELECT_RENT_BY_GUEST_ID = "select id_rent, id_guest, id_owner, id_housing, startDate, endDate, state, eval, comment from rents where id_guest =?";
     private static final String DELETE_RENT_SQL = "delete from rent where id_rent = ?;";
     private static final String UPDATE_RENT_STATE_SQL = "update rent set state =? where id_rent = ?;";
+    private static final String SELECT_AVG_RATING_BY_HOUSING_ID = "SELECT AVG(`eval`) FROM `rents` WHERE `id_housing`= ?;";
 
     public RentDao() {
     }

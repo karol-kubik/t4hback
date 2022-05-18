@@ -28,11 +28,10 @@
 	<div class="container col-md-5">
 		<div class="card">
 			<div class="card-body">
-				<form action="user" method="post">
-
+				<form action="signup" method="post">
 				<caption>
 					<h2>
-						Login
+						Create an account
 					</h2>
 				</caption>
 
@@ -48,7 +47,37 @@
 						name="password" required="required">
 				</fieldset>
 
-				<button type="submit" class="btn btn-success">Login</button>
+				<fieldset class="form-group">
+					<label>Firstname</label> <input type="text"
+						value="<c:out value='${user.firstname}' />" class="form-control"
+						name="firstname" required="required">
+				</fieldset>
+
+				<fieldset class="form-group">
+					<label>Lastname</label> <input type="text"
+						value="<c:out value='${user.lastname}' />" class="form-control"
+						name="lastname" required="required">
+				</fieldset>
+
+				<fieldset class="form-group">
+					<label>Birthday</label> <input type="text"
+						value="<c:out value='${user.birthday}' />" class="form-control"
+						name="birthday" required="required">
+				</fieldset>
+
+				<fieldset class="form-group">
+					<label>Gender</label> <input type="checkbox"
+						value="<c:out value='${user.gender}' />" class="form-control"
+						name="gender">
+				</fieldset>
+
+				<fieldset class="form-group">
+					<label>Phone</label> <input type="text"
+						value="<c:out value='${user.phone}' />" class="form-control"
+						name="phone" required="required">
+				</fieldset>
+
+				<button type="submit" class="btn btn-success">Create my account</button>
 				</form>
 			</div>
 		</div>
