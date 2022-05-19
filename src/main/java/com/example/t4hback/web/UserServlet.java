@@ -43,19 +43,19 @@ public class UserServlet extends HttpServlet {
 
         try {
             switch (action) {
-                case "./new":
+                case "/new":
                     this.showNewForm(request, response);
                     break;
-                case "./insert":
+                case "/insert":
                     this.insertUser(request, response);
                     break;
-                case "./delete":
+                case "/delete":
                     this.deleteUser(request, response);
                     break;
-                case "./edit":
+                case "/edit":
                     this.showEditForm(request, response);
                     break;
-                case "./update":
+                case "/update":
                     this.updateUser(request, response);
                     break;
                 default:
@@ -160,6 +160,7 @@ public class UserServlet extends HttpServlet {
             session.setAttribute("password", resultUser.getPassword());
             session.setAttribute("id", new Integer(resultUser.getId()));
             session.setAttribute("admin", new Boolean(resultUser.getAdmin()));
+            request.setAttribute("uid", resultUser.getId());
             RequestDispatcher dispatcher = request.getRequestDispatcher("account.jsp");
             dispatcher.forward(request, response);
         }

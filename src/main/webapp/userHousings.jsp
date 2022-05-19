@@ -30,19 +30,15 @@
     <!-- <div class="alert alert-success" *ngIf='message'>{{message}}</div> -->
 
     <div class="container">
-        <h3 class="text-center">List of Housings</h3>
+        <h3 class="text-center">List of my housings</h3>
         <hr>
         <div class="container text-left">
 
-            <a href="<%=request.getContextPath()%>/housing/new_housing" class="btn btn-success">Add
-                New Housing</a>
         </div>
         <br>
         <table class="table table-bordered">
             <thead>
             <tr>
-                <th>ID</th>
-                <th>Owner ID</th>
                 <th>Title</th>
                 <th>Address</th>
                 <th>City</th>
@@ -61,8 +57,6 @@
             <c:forEach var="housing" items="${listHousing}">
 
                 <tr>
-                    <td><c:out value="${housing.id_housing}" /></td>
-                    <td><c:out value="${housing.id_owner}" /></td>
                     <td><c:out value="${housing.title}" /></td>
                     <td><c:out value="${housing.address}" /></td>
                     <td><c:out value="${housing.city}" /></td>
