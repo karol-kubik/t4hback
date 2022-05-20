@@ -14,6 +14,7 @@ public class HousingDAO {
 
     private static final String INSERT_HOUSINGS_SQL = "INSERT INTO housings (id_owner, title, address, city, description, noSmoke, noiseCurfew, noChild, noPets, petKeep, plantWater, houseClean) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?);";
     private static final String SELECT_HOUSINGS_BY_ID = "select id_housing, id_owner, title, address, city, description, noSmoke, noiseCurfew, noChild, noPets, petKeep, plantWater, houseClean from housings where id_housing =?";
+    private static final String SELECT_HOUSINGS_BY_UID = "select id_housing, id_owner, title, address, city, description, noSmoke, noiseCurfew, noChild, noPets, petKeep, plantWater, houseClean from housings where id_owner =?";
     private static final String SELECT_ALL_HOUSINGS = "select * from housings";
     private static final String DELETE_HOUSING_SQL = "delete from housings where id_housing = ?;";
     private static final String UPDATE_HOUSING_SQL = "update housings set id_owner = ?,title= ?, address =?, city = ?,description= ?, noSmoke =?, noiseCurfew = ?,noChild= ?, noPets =?, petKeep = ?,plantWater= ?, houseClean =? where id_housing = ?;";
@@ -60,6 +61,43 @@ public class HousingDAO {
         } catch (SQLException e) {
             printSQLException(e);
         }
+    }
+
+    public List<Housing> selectHousingsByUID(int uid) {
+
+        // using try-with-resources to avoid closing resources (boiler plate code)
+        List<Housing> housings = new ArrayList<>();
+        // Step 1: Establishing a Connection
+        try (Connection connection = getConnection();
+
+             // Step 2:Create a statement using connection object
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_HOUSINGS_BY_UID);) {
+            preparedStatement.setInt(1,uid);
+            System.out.println(preparedStatement);
+            // Step 3: Execute the query or update query
+            ResultSet rs = preparedStatement.executeQuery();
+
+            // Step 4: Process the ResultSet object.
+            while (rs.next()) {
+                Integer id_housing = rs.getInt("id_housing");
+                Integer id_owner = rs.getInt("id_owner");
+                String title = rs.getString("title");
+                String address = rs.getString("address");
+                String city = rs.getString("city");
+                String description = rs.getString("description");
+                Boolean noSmoke = rs.getBoolean("noSmoke");
+                Boolean noiseCurfew = rs.getBoolean("noiseCurfew");
+                Boolean noChild = rs.getBoolean("noChild");
+                Boolean noPets = rs.getBoolean("noPets");
+                Boolean petKeep = rs.getBoolean("petKeep");
+                Boolean plantWater = rs.getBoolean("plantWater");
+                Boolean houseClean = rs.getBoolean("houseClean");
+                housings.add(new Housing(id_housing,id_owner, title, address, city, description, noSmoke, noiseCurfew, noChild, noPets, petKeep, plantWater, houseClean));
+            }
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
+        return housings;
     }
 
     public List<Housing> selectHousingsByID(int id) {

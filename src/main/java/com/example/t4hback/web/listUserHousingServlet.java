@@ -13,8 +13,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet(name = "newHousingServlet", value = "/newHousing")
-public class newHousingServlet extends javax.servlet.http.HttpServlet {
+@WebServlet(name = "listUserHousingsServlet", value = "/my_housings")
+public class listUserHousingServlet extends javax.servlet.http.HttpServlet {
     private static final long serialVersionUID = 1L;
     private HousingDAO housingDAO;
 
@@ -30,17 +30,20 @@ public class newHousingServlet extends javax.servlet.http.HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            this.insertHousing(request,response);
+            this.listHousingsByUID(request, response);
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    private void listHousing(HttpServletRequest request, HttpServletResponse response)
+    private void listHousingsByUID(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
-        List<Housing> listHousing = housingDAO.selectAllHousings();
+        HttpSession session = request.getSession();
+        Integer uid = (Integer) session.getAttribute("id");
+        Integer id_owner = uid;
+        List<Housing> listHousing = housingDAO.selectHousingsByUID(id_owner);
         request.setAttribute("listHousing", listHousing);
-        RequestDispatcher dispatcherHousing = request.getRequestDispatcher("housing-list.jsp");
+        RequestDispatcher dispatcherHousing = request.getRequestDispatcher("userHousings.jsp");
         dispatcherHousing.forward(request, response);
     }
 
@@ -72,9 +75,7 @@ public class newHousingServlet extends javax.servlet.http.HttpServlet {
 
     private void insertHousing(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
-        HttpSession session = request.getSession();
-        Integer uid = (Integer) session.getAttribute("id");
-        Integer id_owner = uid;
+        Integer id_owner = Integer.valueOf(request.getParameter("id_owner"));
         String title = request.getParameter("title");
         String address = request.getParameter("address");
         String city = request.getParameter("city");
@@ -88,7 +89,7 @@ public class newHousingServlet extends javax.servlet.http.HttpServlet {
         Boolean houseClean = Boolean.valueOf(request.getParameter("houseClean"));
         Housing newHousing = new Housing(id_owner, title, address, city, description, noSmoke, noiseCurfew, noChild, noPets, petKeep, plantWater, houseClean);
         housingDAO.insertHousing(newHousing);
-        response.sendRedirect("account.jsp");
+        response.sendRedirect("list");
     }
 
     private void updateHousing(HttpServletRequest request, HttpServletResponse response)

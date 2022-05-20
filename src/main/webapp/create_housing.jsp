@@ -39,67 +39,67 @@
                     <fieldset class="form-group">
                         <label>Title</label> <input type="text"
                                                          value="<c:out value='${housing.title}' />" class="form-control"
-                                                         name="email">
+                                                         name="title">
                     </fieldset>
 
                     <fieldset class="form-group">
                         <label>Address</label> <input type="text"
                                                            value="<c:out value='${housing.address}' />" class="form-control"
-                                                           name="country">
+                                                           name="address">
                     </fieldset>
 
                     <fieldset class="form-group">
                         <label>City</label> <input type="text"
                                                            value="<c:out value='${housing.city}' />" class="form-control"
-                                                           name="country">
+                                                           name="city">
                     </fieldset>
 
                     <fieldset class="form-group">
                         <label>Description of the housing</label> <input type="text"
                                                            value="<c:out value='${housing.description}' />" class="form-control"
-                                                           name="country">
+                                                           name="description">
                     </fieldset>
 
                     <fieldset class="form-group">
                         <label>Condition 1 : No smoking allowed ?</label> <input type="checkbox"
                                                            value="<c:out value='${housing.noSmoke}' />" class="form-control"
-                                                           name="country">
+                                                           name="noSmoke">
                     </fieldset>
 
                     <fieldset class="form-group">
                         <label>Condition 2 : Noise Curfew ?</label> <input type="checkbox"
                                                            value="<c:out value='${housing.noiseCurfew}' />" class="form-control"
-                                                           name="country">
+                                                           name="noiseCurfew">
                     </fieldset>
 
                     <fieldset class="form-group">
                         <label>Condition 3 : No child allowed ?</label> <input type="checkbox"
                                                            value="<c:out value='${housing.noChild}' />" class="form-control"
-                                                           name="country">
+                                                           name="noChild">
                     </fieldset>
 
                     <fieldset class="form-group">
                         <label>Condition 4 : No pets allowed ?</label> <input type="checkbox"
                                                            value="<c:out value='${housing.noPets}' />" class="form-control"
-                                                           name="country">
+                                                           name="noPets">
                     </fieldset>
 
                     <fieldset class="form-group">
                         <label>Task 1 : Pet keeping ?</label> <input type="checkbox"
                                                            value="<c:out value='${housing.petKeep}' />" class="form-control"
-                                                           name="country">
+                                                           name="petKeep">
                     </fieldset>
 
                     <fieldset class="form-group">
                         <label>Task 2 : Plan Watering ?</label> <input type="checkbox"
                                                            value="<c:out value='${housing.plantWater}' />" class="form-control"
-                                                           name="country">
+                                                           name="plantWater">
                     </fieldset>
 
                     <fieldset class="form-group">
                         <label>Task 3 : House Cleaning ?</label> <input type="checkbox"
                                                            value="<c:out value='${housing.houseClean}' />" class="form-control"
-                                                           name="country">
+                                                           name="houseClean">
                     </fieldset>
 
                     <button type="submit" class="btn btn-success">Submit a housing</button>

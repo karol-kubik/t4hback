@@ -74,9 +74,9 @@
                     <td><c:out value="${housing.petKeep}" /></td>
                     <td><c:out value="${housing.plantWater}" /></td>
                     <td><c:out value="${housing.houseClean}" /></td>
-                    <td><a href="/housing/edit_housing?id=<c:out value='${housing.id}' />">Edit</a>
+                    <td><a href="/edit_housing?id=<c:out value='${housing.id}' />">Edit</a>
                         &nbsp;&nbsp;&nbsp;&nbsp; <a
-                                href="/housing/delete_housing?id=<c:out value='${housing.id}' />">Delete</a></td>
+                                href="/delete_housing?id=<c:out value='${housing.id}' />">Delete</a></td>
                 </tr>
             </c:forEach>
             <!-- } -->
