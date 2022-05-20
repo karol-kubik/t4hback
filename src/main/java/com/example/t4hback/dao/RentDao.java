@@ -1,7 +1,6 @@
 package com.example.t4hback.dao;
 
 import com.example.t4hback.model.Rent;
-import com.example.t4hback.model.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -14,9 +13,9 @@ public class RentDao {
     private String jdbcPassword = "root";
 
     private static final String INSERT_RENT_SQL = "INSERT INTO rents (id_guest, id_owner, id_housing, startDate, endDate, state, eval, comment) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
-    private static final String SELECT_RENT_BY_RENT_ID = "select id_rent, id_guest, id_owner, id_housing, startDate, endDate, state, eval, comment from rents where id_rent =?";
-    private static final String SELECT_RENT_BY_OWNER_ID = "select id_rent, id_guest, id_owner, id_housing, startDate, endDate, state, eval, comment from rents where id_owner =?";
-    private static final String SELECT_RENT_BY_GUEST_ID = "select id_rent, id_guest, id_owner, id_housing, startDate, endDate, state, eval, comment from rents where id_guest =?";
+    private static final String SELECT_RENT_BY_RENT_ID = "select * from rents where id_rent =?;";
+    private static final String SELECT_RENT_BY_OWNER_ID = "select * from rents where id_owner =?;";
+    private static final String SELECT_RENT_BY_GUEST_ID = "select * from rents where id_guest =?;";
     private static final String DELETE_RENT_SQL = "delete from rent where id_rent = ?;";
     private static final String UPDATE_RENT_STATE_SQL = "update rent set state =? where id_rent = ?;";
     private static final String SELECT_AVG_RATING_BY_HOUSING_ID = "SELECT AVG(`eval`) FROM `rents` WHERE `id_housing`= ?;";
@@ -39,6 +38,18 @@ public class RentDao {
         return connection;
     }
 
+    public double selectRatingByHousingID(int hid) throws SQLException{
+        double rating = 0.0;
+        Connection connection = getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(SELECT_AVG_RATING_BY_HOUSING_ID);
+        preparedStatement.setInt(1, hid);
+        ResultSet rs = preparedStatement.executeQuery();
+        while (rs.next()) {
+            rating = rs.getDouble("AVG(`eval`)");
+        }
+        return rating;
+    }
+
     public void insertRent(Rent rent) throws SQLException {
         System.out.println(INSERT_RENT_SQL);
         // try-with-resource statement will auto close the connection.
@@ -56,7 +67,7 @@ public class RentDao {
             preparedStatement.executeUpdate();
     }
 
-    public List<Rent> selectRentsByOwner() throws SQLException {
+    public List<Rent> selectRentsByOwner(int id_owner) throws SQLException {
 
         // using try-with-resources to avoid closing resources (boiler plate code)
         List<Rent> rents = new ArrayList<>();
@@ -65,6 +76,7 @@ public class RentDao {
 
         // Step 2:Create a statement using connection object
         PreparedStatement preparedStatement = connection.prepareStatement(SELECT_RENT_BY_OWNER_ID);
+        preparedStatement.setInt(1, id_owner);
         System.out.println(preparedStatement);
         // Step 3: Execute the query or update query
         ResultSet rs = preparedStatement.executeQuery();
@@ -73,7 +85,6 @@ public class RentDao {
         while (rs.next()) {
             int id_rent = rs.getInt("id_rent");
             int id_guest = rs.getInt("id_guest");
-            int id_owner = rs.getInt("id_owner");
             int id_housing = rs.getInt("id_housing");
             Date startDate = rs.getDate("startDate");
             Date endDate = rs.getDate("endDate");

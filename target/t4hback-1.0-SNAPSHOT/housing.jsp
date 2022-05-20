@@ -3,13 +3,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-    <title>Profile</title>
+    <title><c:out value="${resultHousing.title}"/></title>
 </head>
 <body>
 <h1><c:out value="${resultHousing.title}"/></h1><br>
 <h5>City : <c:out value="${resultHousing.city}" /></h5><br>
-<h5>Rating : TBD</h5><br>
-<a href="">Book this home</a>
+<h5>Rating : <c:out value="${rating}" />/5</h5><br>
+<a href="book_housing?hid=<c:out value="${resultHousing.id_housing}" />">Rent this home</a>
 <h4>Description : <c:out value="${resultHousing.description}" /></h4><br>
 <h2>Conditions : </h2><br>
 <h4>No Smoking : <c:out value="${resultHousing.noSmoke}" /></h4><br>

@@ -10,5 +10,6 @@
 <a href="create_housing.jsp">Create a housing</a><br>
 <a href="my_housings">Show my current housings</a><br>
 <a href="user_profile?uid=<c:out value="${requestScope.uid}" />">My profile</a>
+<a href="my_bookings">Show my current bookings</a><br>
 </body>
 </html>
