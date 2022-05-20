@@ -9,7 +9,7 @@
 <h1><c:out value="${resultHousing.title}"/></h1><br>
 <h5>City : <c:out value="${resultHousing.city}" /></h5><br>
 <h5>Rating : TBD</h5><br>
-<a href="user_profile?uid=<c:out value="${resultHousing.id_owner}" />">Book this home</a>
+<a href="">Book this home</a>
 <h4>Description : <c:out value="${resultHousing.description}" /></h4><br>
 <h2>Conditions : </h2><br>
 <h4>No Smoking : <c:out value="${resultHousing.noSmoke}" /></h4><br>

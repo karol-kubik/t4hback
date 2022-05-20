@@ -37,22 +37,22 @@ public class HousingServlet extends javax.servlet.http.HttpServlet {
 
         try {
             switch (action) {
-                case "/new_housing":
+                case "/ergerfeerg":
                     this.showNewFormHousing(request, response);
                     break;
-                case "/insert_housing":
+                case "/frefefefergg":
                     this.insertHousing(request, response);
                     break;
-                case "/delete_housing":
+                case "/azdadazdargeg":
                     this.deleteHousing(request, response);
                     break;
-                case "/edit_housing":
+                case "/azdazdazdad":
                     this.showEditFormHousing(request, response);
                     break;
-                case "/update_housing":
+                case "/azdadazdad":
                     this.updateHousing(request, response);
                     break;
-                case "/list_housing":
+                case "/azdadazda":
                     System.out.println("Test housing");
                     this.listHousing(request, response);
                     break;

@@ -54,23 +54,23 @@
             </thead>
             <tbody>
             <!--   for (Todo todo: todos) {  -->
-            <c:forEach var="housing" items="${listHousing}">
+            <c:forEach var="listHousing" items="${listHousing}">
 
                 <tr>
-                    <td><c:out value="${housing.title}" /></td>
-                    <td><c:out value="${housing.address}" /></td>
-                    <td><c:out value="${housing.city}" /></td>
-                    <td><c:out value="${housing.description}" /></td>
-                    <td><c:out value="${housing.noSmoke}" /></td>
-                    <td><c:out value="${housing.noiseCurfew}" /></td>
-                    <td><c:out value="${housing.noChild}" /></td>
-                    <td><c:out value="${housing.noPets}" /></td>
-                    <td><c:out value="${housing.petKeep}" /></td>
-                    <td><c:out value="${housing.plantWater}" /></td>
-                    <td><c:out value="${housing.houseClean}" /></td>
-                    <td><a href="/edit_housing?id=<c:out value='${housing.id}' />">Edit</a>
+                    <td><c:out value="${listHousing.title}" /></td>
+                    <td><c:out value="${listHousing.address}" /></td>
+                    <td><c:out value="${listHousing.city}" /></td>
+                    <td><c:out value="${listHousing.description}" /></td>
+                    <td><c:out value="${listHousing.noSmoke}" /></td>
+                    <td><c:out value="${listHousing.noiseCurfew}" /></td>
+                    <td><c:out value="${listHousing.noChild}" /></td>
+                    <td><c:out value="${listHousing.noPets}" /></td>
+                    <td><c:out value="${listHousing.petKeep}" /></td>
+                    <td><c:out value="${listHousing.plantWater}" /></td>
+                    <td><c:out value="${listHousing.houseClean}" /></td>
+                    <td><a href="edit_housing?hid=<c:out value='${listHousing.id_housing}' />">Edit</a>
                         &nbsp;&nbsp;&nbsp;&nbsp; <a
-                                href="/delete_housing?id=<c:out value='${housing.id}' />">Delete</a></td>
+                                href="delete_housing?hid=<c:out value='${listHousing.id_housing}' />">Delete</a></td>
                 </tr>
             </c:forEach>
             <!-- } -->

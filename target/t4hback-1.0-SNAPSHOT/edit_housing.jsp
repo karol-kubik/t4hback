@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-    <title>Create a housing</title>
+    <title>Edit a housing</title>
     <link rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -28,13 +28,17 @@
 <div class="container col-md-5">
     <div class="card">
         <div class="card-body">
-            <form action="newHousing" method="post">
+            <form action="updateHousing" method="post">
 
                     <caption>
                         <h2>
-                            Submit a housing
+                            Edit a housing
                         </h2>
                     </caption>
+
+                    <input type="hidden" name="id_housing" value="<c:out value='${housing.id_housing}' />" />
+
+                    <input type="hidden" name="id_owner" value="<c:out value='${housing.id_owner}' />" />
 
                     <fieldset class="form-group">
                         <label>Title</label> <input type="text"
@@ -102,7 +106,7 @@
                                                            name="houseClean">
                     </fieldset>
 
-                    <button type="submit" class="btn btn-success">Create housing</button>
+                    <button type="submit" class="btn btn-success">Edit housing</button>
                 </form>
         </div>
     </div>

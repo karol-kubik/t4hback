@@ -40,8 +40,7 @@ public class listUserHousingServlet extends javax.servlet.http.HttpServlet {
             throws SQLException, IOException, ServletException {
         HttpSession session = request.getSession();
         Integer uid = (Integer) session.getAttribute("id");
-        Integer id_owner = uid;
-        List<Housing> listHousing = housingDAO.selectHousingsByUID(id_owner);
+        List<Housing> listHousing = housingDAO.selectHousingsByUID(uid);
         request.setAttribute("listHousing", listHousing);
         RequestDispatcher dispatcherHousing = request.getRequestDispatcher("userHousings.jsp");
         dispatcherHousing.forward(request, response);

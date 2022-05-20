@@ -13,11 +13,11 @@ public class HousingDAO {
     private String jdbcPassword = "root";
 
     private static final String INSERT_HOUSINGS_SQL = "INSERT INTO housings (id_owner, title, address, city, description, noSmoke, noiseCurfew, noChild, noPets, petKeep, plantWater, houseClean) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?);";
-    private static final String SELECT_HOUSINGS_BY_ID = "select id_housing, id_owner, title, address, city, description, noSmoke, noiseCurfew, noChild, noPets, petKeep, plantWater, houseClean from housings where id_housing =?";
-    private static final String SELECT_HOUSINGS_BY_UID = "select id_housing, id_owner, title, address, city, description, noSmoke, noiseCurfew, noChild, noPets, petKeep, plantWater, houseClean from housings where id_owner =?";
+    private static final String SELECT_HOUSINGS_BY_ID = "SELECT id_housing, id_owner, title, address, city, description, noSmoke, noiseCurfew, noChild, noPets, petKeep, plantWater, houseClean from housings where id_housing =?";
+    private static final String SELECT_HOUSINGS_BY_UID = "SELECT * FROM housings WHERE id_owner =?";
     private static final String SELECT_ALL_HOUSINGS = "select * from housings";
     private static final String DELETE_HOUSING_SQL = "delete from housings where id_housing = ?;";
-    private static final String UPDATE_HOUSING_SQL = "update housings set id_owner = ?,title= ?, address =?, city = ?,description= ?, noSmoke =?, noiseCurfew = ?,noChild= ?, noPets =?, petKeep = ?,plantWater= ?, houseClean =? where id_housing = ?;";
+    private static final String UPDATE_HOUSING_SQL = "UPDATE housings SET id_owner = ?,title= ?, address =?, city = ?,description= ?, noSmoke =?, noiseCurfew = ?,noChild= ?, noPets =?, petKeep = ?,plantWater= ?, houseClean =? where id_housing = ?;";
     private static final String SELECT_HOUSINGS_BY_CITY = "select id_housing, id_owner, title, address, city, description, noSmoke, noiseCurfew, noChild, noPets, petKeep, plantWater, houseClean from housings where city like ?";
     private static final String SELECT_HOUSINGS_BY_TITLE = "select id_housing, id_owner, title, address, city, description, noSmoke, noiseCurfew, noChild, noPets, petKeep, plantWater, houseClean from housings where title like ?";
 
