@@ -159,8 +159,9 @@ public class UserServlet extends HttpServlet {
             session.setAttribute("email", resultUser.getEmail());
             session.setAttribute("password", resultUser.getPassword());
             session.setAttribute("id", new Integer(resultUser.getId()));
-            session.setAttribute("admin", new Boolean(resultUser.getAdmin()));
+            session.setAttribute("admin", Boolean.valueOf(resultUser.getAdmin()));
             request.setAttribute("uid", resultUser.getId());
+            System.out.println("Admin = " + session.getAttribute("admin"));
             RequestDispatcher dispatcher = request.getRequestDispatcher("account.jsp");
             dispatcher.forward(request, response);
         }

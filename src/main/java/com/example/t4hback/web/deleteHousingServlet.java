@@ -40,7 +40,7 @@ public class deleteHousingServlet extends javax.servlet.http.HttpServlet {
             throws SQLException, IOException {
         int id_housing = Integer.parseInt(request.getParameter("hid"));
         housingDAO.deleteHousing(id_housing);
-        response.sendRedirect("my_housings");
+        response.sendRedirect("account.jsp");
 
     }
 

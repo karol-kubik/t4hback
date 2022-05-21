@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -57,9 +58,13 @@ public class HousingPageServlet extends HttpServlet {
         Integer oid = resultHousing.getId_owner();
         User resultHousingOwner = userDAO.selectUser(oid);
         double rating = rentDAO.selectRatingByHousingID(hid);
+        HttpSession session = request.getSession();
+        boolean admin = (Boolean) session.getAttribute("admin");
         request.setAttribute("resultHousingOwner", resultHousingOwner);
         request.setAttribute("resultHousing", resultHousing);
         request.setAttribute("rating", rating);
+        request.setAttribute("admin", admin);
+        System.out.println("User is admin = " + admin);
         RequestDispatcher dispatcher = request.getRequestDispatcher("housing.jsp");
         dispatcher.forward(request, response);
     }

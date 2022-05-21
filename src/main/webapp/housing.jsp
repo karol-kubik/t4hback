@@ -25,5 +25,8 @@
 <h4>Lastname : <c:out value="${resultHousingOwner.lastname}" /></h4><br>
 <h4>Phone : <c:out value="${resultHousingOwner.phone}" /></h4><br>
 <a href="user_profile?uid=<c:out value="${resultHousing.id_owner}" />">Owner profile</a>
+<c:if test="${admin == true}">
+    <a href="delete_housing?hid=<c:out value='${resultHousing.id_housing}' />">Admin action : Delete housing</a>
+</c:if>
 </body>
 </html>
