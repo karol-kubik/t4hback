@@ -16,8 +16,9 @@ public class RentDao {
     private static final String SELECT_RENT_BY_RENT_ID = "select * from rents where id_rent =?;";
     private static final String SELECT_RENT_BY_OWNER_ID = "select * from rents where id_owner =?;";
     private static final String SELECT_RENT_BY_GUEST_ID = "select * from rents where id_guest =?;";
-    private static final String DELETE_RENT_SQL = "delete from rent where id_rent = ?;";
-    private static final String UPDATE_RENT_STATE_SQL = "update rent set state =? where id_rent = ?;";
+    private static final String DELETE_RENT_SQL = "delete from rents where id_rent = ?;";
+    private static final String UPDATE_RENT_STATE_SQL = "update rents set state =? where id_rent = ?;";
+    private static final String UPDATE_RENT_STATE_COMMENT_SQL = "update rents set state = 'closed', comment=? where id_rent = ?;";
     private static final String SELECT_AVG_RATING_BY_HOUSING_ID = "SELECT AVG(`eval`) FROM `rents` WHERE `id_housing`= ?;";
 
     public RentDao() {
@@ -96,7 +97,7 @@ public class RentDao {
         return rents;
     }
 
-    public List<Rent> selectRentsByID() throws SQLException {
+    public List<Rent> selectRentsByRentID() throws SQLException {
 
         // using try-with-resources to avoid closing resources (boiler plate code)
         List<Rent> rents = new ArrayList<>();
@@ -124,15 +125,14 @@ public class RentDao {
         return rents;
     }
 
-    public List<Rent> selectRentsByGuest() throws SQLException {
+    public Rent selectRentByRentID(int rid) throws SQLException {
 
-        // using try-with-resources to avoid closing resources (boiler plate code)
-        List<Rent> rents = new ArrayList<>();
+        Rent rent = null;
         // Step 1: Establishing a Connection
         Connection connection = getConnection();
-
         // Step 2:Create a statement using connection object
-        PreparedStatement preparedStatement = connection.prepareStatement(SELECT_RENT_BY_GUEST_ID);
+        PreparedStatement preparedStatement = connection.prepareStatement(SELECT_RENT_BY_RENT_ID);
+        preparedStatement.setInt(1, rid);
         System.out.println(preparedStatement);
         // Step 3: Execute the query or update query
         ResultSet rs = preparedStatement.executeQuery();
@@ -141,6 +141,35 @@ public class RentDao {
         while (rs.next()) {
             int id_rent = rs.getInt("id_rent");
             int id_guest = rs.getInt("id_guest");
+            int id_owner = rs.getInt("id_owner");
+            int id_housing = rs.getInt("id_housing");
+            Date startDate = rs.getDate("startDate");
+            Date endDate = rs.getDate("endDate");
+            String state = rs.getString("state");
+            Integer eval = rs.getInt("eval");
+            String comment = rs.getString("comment");
+            rent = new Rent(id_rent, id_guest, id_owner, id_housing, startDate, endDate, state, eval, comment);
+        }
+        return rent;
+    }
+
+    public List<Rent> selectRentsByGuest(int id_guest) throws SQLException {
+
+        // using try-with-resources to avoid closing resources (boiler plate code)
+        List<Rent> rents = new ArrayList<>();
+        // Step 1: Establishing a Connection
+        Connection connection = getConnection();
+
+        // Step 2:Create a statement using connection object
+        PreparedStatement preparedStatement = connection.prepareStatement(SELECT_RENT_BY_GUEST_ID);
+        preparedStatement.setInt(1, id_guest);
+        System.out.println(preparedStatement);
+        // Step 3: Execute the query or update query
+        ResultSet rs = preparedStatement.executeQuery();
+
+        // Step 4: Process the ResultSet object.
+        while (rs.next()) {
+            int id_rent = rs.getInt("id_rent");
             int id_owner = rs.getInt("id_owner");
             int id_housing = rs.getInt("id_housing");
             Date startDate = rs.getDate("startDate");
@@ -168,6 +197,42 @@ public class RentDao {
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_RENT_STATE_SQL);) {
             preparedStatement.setString(1, rent.getState());
+            preparedStatement.setInt(2, rent.getId_rent());
+
+            rowUpdated = preparedStatement.executeUpdate() > 0;
+        }
+        return rowUpdated;
+    }
+
+    public boolean rejectRent(int id_rent) throws SQLException {
+        boolean rowUpdated;
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_RENT_STATE_SQL);) {
+            preparedStatement.setString(1, "rejected");
+            preparedStatement.setInt(2, id_rent);
+
+            rowUpdated = preparedStatement.executeUpdate() > 0;
+        }
+        return rowUpdated;
+    }
+
+    public boolean acceptRent(int id_rent) throws SQLException {
+        boolean rowUpdated;
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_RENT_STATE_SQL);) {
+            preparedStatement.setString(1, "accepted");
+            preparedStatement.setInt(2, id_rent);
+
+            rowUpdated = preparedStatement.executeUpdate() > 0;
+        }
+        return rowUpdated;
+    }
+
+    public boolean updateRentStateAndComment(Rent rent) throws SQLException {
+        boolean rowUpdated;
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_RENT_STATE_COMMENT_SQL);) {
+            preparedStatement.setString(1, rent.getComment());
             preparedStatement.setInt(2, rent.getId_rent());
 
             rowUpdated = preparedStatement.executeUpdate() > 0;

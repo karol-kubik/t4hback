@@ -13,10 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 
-@WebServlet(name = "listUserBookingsServlet", value = "/my_bookings")
-public class listUserBookingServlet extends javax.servlet.http.HttpServlet {
+@WebServlet(name = "showEndBookingServlet", value = "/end_booking")
+public class showEndBookingServlet extends javax.servlet.http.HttpServlet {
     private static final long serialVersionUID = 1L;
     private HousingDAO housingDAO;
     private RentDao rentDAO;
@@ -34,22 +33,21 @@ public class listUserBookingServlet extends javax.servlet.http.HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            this.listRentsByUID(request, response);
+            this.showEndBookingForm(request, response);
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    private void listRentsByUID(HttpServletRequest request, HttpServletResponse response)
-            throws SQLException, IOException, ServletException {
-        HttpSession session = request.getSession();
-        Integer uid = (Integer) session.getAttribute("id");
-        List<Rent> listOwnerRents = rentDAO.selectRentsByOwner(uid);
-        request.setAttribute("listOwnerRents", listOwnerRents);
-        List<Rent> listGuestRents = rentDAO.selectRentsByGuest(uid);
-        request.setAttribute("listGuestRents", listGuestRents);
-        RequestDispatcher dispatcherHousing = request.getRequestDispatcher("userBookings.jsp");
-        dispatcherHousing.forward(request, response);
+    private void showEndBookingForm(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, ServletException, IOException {
+        int id_rent = Integer.parseInt(request.getParameter("rid"));
+        Rent rent = rentDAO.selectRentByRentID(id_rent);
+        System.out.println("ID RENT = " + rent.getId_rent());
+        request.setAttribute("rent", rent);
+        RequestDispatcher dispatcherBooking = request.getRequestDispatcher("endBookingForm.jsp");
+        dispatcherBooking.forward(request, response);
+
     }
 
 }

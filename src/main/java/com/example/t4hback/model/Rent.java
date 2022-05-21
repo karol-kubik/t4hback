@@ -38,6 +38,13 @@ public class Rent {
         this.comment = comment;
     }
 
+    public Rent(int id_rent, int eval, String comment) {
+        super();
+        this.id_rent = id_rent;
+        this.eval = eval;
+        this.comment = comment;
+    }
+
     public int getId_housing() {
         return id_housing;
     }
