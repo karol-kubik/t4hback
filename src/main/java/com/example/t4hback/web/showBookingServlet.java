@@ -40,18 +40,23 @@ public class showBookingServlet extends javax.servlet.http.HttpServlet {
 
     private void showBookingForm(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
-        int id_housing = Integer.parseInt(request.getParameter("hid"));
-        Housing bookingHousing = housingDAO.selectHousingByHousingID(id_housing);
         HttpSession session = request.getSession();
-        Integer id_guest = (Integer) session.getAttribute("id"); //ATTENTION IL FAUT SE CONNECTER POUR POUVOIR FAIRE UN BOOKING
-        request.setAttribute("housing", bookingHousing);
-        request.setAttribute("gid",id_guest);
-        System.out.println("ID guest" + id_guest);
-        System.out.println("ID housing" + id_housing);
-        System.out.println("ID owner" + bookingHousing.getId_owner());
-        RequestDispatcher dispatcherBooking = request.getRequestDispatcher("booking-form.jsp");
-        dispatcherBooking.forward(request, response);
+        if (session.getAttribute("id") == null){
+            String error = "You must first connect to your account";
+            request.setAttribute("error",error);
+            RequestDispatcher dispatcherBooking = request.getRequestDispatcher("login");
+            dispatcherBooking.forward(request, response);
 
+        }
+        else{
+            int id_housing = Integer.parseInt(request.getParameter("hid"));
+            Housing bookingHousing = housingDAO.selectHousingByHousingID(id_housing);
+            Integer id_guest = (Integer) session.getAttribute("id");
+            request.setAttribute("housing", bookingHousing);
+            request.setAttribute("gid",id_guest);
+            RequestDispatcher dispatcherBooking = request.getRequestDispatcher("booking-form.jsp");
+            dispatcherBooking.forward(request, response);
+        }
     }
 
 }

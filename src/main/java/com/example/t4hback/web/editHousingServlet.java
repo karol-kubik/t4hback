@@ -54,7 +54,7 @@ public class editHousingServlet extends javax.servlet.http.HttpServlet {
 
         Housing updatedHousing = new Housing(id_housing, id_owner, title, address, city, description, noSmoke, noiseCurfew, noChild, noPets, petKeep, plantWater, houseClean);
         housingDAO.updateHousing(updatedHousing);
-        response.sendRedirect("my_housings");
+        response.sendRedirect("user");
     }
 
 }

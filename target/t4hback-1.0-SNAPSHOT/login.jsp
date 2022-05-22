@@ -2,56 +2,54 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
+
 <head>
-<title>User Management Application</title>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	crossorigin="anonymous">
+	<title>Task4Home</title>
+	<link rel="stylesheet" href="./css/style.css" type="text/css">
 </head>
+
 <body>
-
-	<header>
-		<nav class="navbar navbar-expand-md navbar-dark"
-			style="background-color: tomato">
-			<div>
-				<a href="https://www.javaguides.net" class="navbar-brand"> Task4Home </a>
-			</div>
-
-			<ul class="navbar-nav">
-				<li><a href="<%=request.getContextPath()%>/list"
-					class="nav-link">Users</a></li>
-			</ul>
-		</nav>
-	</header>
-	<br>
-	<div class="container col-md-5">
-		<div class="card">
-			<div class="card-body">
-				<form action="user" method="post">
-
-				<caption>
-					<h2>
-						Login
-					</h2>
-				</caption>
-
-				<fieldset class="form-group">
-					<label>Email</label> <input type="text"
-						value="<c:out value='${user.email}' />" class="form-control"
-						name="email" required="required">
-				</fieldset>
-
-				<fieldset class="form-group">
-					<label>Password</label> <input type="password"
-						value="<c:out value='${user.password}' />" class="form-control"
-						name="password" required="required">
-				</fieldset>
-
-				<button type="submit" class="btn btn-success">Login</button>
-				</form>
-			</div>
-		</div>
+<header>
+	<div id="imageLogo">
+		<img id="logo" src="/Images/Logo.png" alt="Task4Home Logo">
+		<h1>TASK4<span id="home">HOME</span></h1>
 	</div>
+	<div class="navigation">
+		<ul class="navbar-nav">
+			<li><a href="home" class="nav-link">Home</a></li>
+		</ul>
+	</div>
+</header>
+<br>
+<div class="content">
+	<div class="colGauche"></div>
+	<div class="colMilieu">
+		<form action="user">
+
+			<caption>
+				<h2>
+					Log in
+				</h2>
+			</caption>
+
+			<c:if test="${error != null}">
+				<p class="error"><c:out value='${error}' /></p>
+			</c:if>
+
+			<fieldset class="form-group">
+				<input type="text" value="<c:out value='${user.email}' />" class="form-control" name="email" required="required" placeholder="e-mail">
+				<input type="password" value="<c:out value='${user.password}' />" class="form-control" name="password" required="required" placeholder="password">
+			</fieldset>
+
+			<button type="submit" class="btn btn-success">Log in</button>
+			<br>
+			<label>First time user ?</label>
+			<button id="register" type="submit" class="buttonType2" onclick="window.location.href='signup.jsp';">Register</button>
+		</form>
+	</div>
+	<div class="colDroite"></div>
+</div>
+
 </body>
+
 </html>

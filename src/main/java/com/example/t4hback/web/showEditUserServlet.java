@@ -1,25 +1,25 @@
 package com.example.t4hback.web;
 
 import com.example.t4hback.dao.HousingDAO;
+import com.example.t4hback.dao.UserDAO;
 import com.example.t4hback.model.Housing;
+import com.example.t4hback.model.User;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 
-@WebServlet(name = "showEditHousingServlet", value = "/edit_housing")
-public class showEditHousingServlet extends javax.servlet.http.HttpServlet {
+@WebServlet(name = "showEditUserServlet", value = "/edit_user")
+public class showEditUserServlet extends javax.servlet.http.HttpServlet {
     private static final long serialVersionUID = 1L;
-    private HousingDAO housingDAO;
+    private UserDAO userDAO;
 
     public void init() {
-        housingDAO = new HousingDAO();
+        userDAO = new UserDAO();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -38,10 +38,10 @@ public class showEditHousingServlet extends javax.servlet.http.HttpServlet {
 
     private void showEditFormHousing(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
-        int id_housing = Integer.parseInt(request.getParameter("hid"));
-        Housing existingHousing = housingDAO.selectHousingByHousingID(id_housing);
-        RequestDispatcher dispatcherHousing = request.getRequestDispatcher("create_housing.jsp");
-        request.setAttribute("housing", existingHousing);
+        int id_user = Integer.parseInt(request.getParameter("uid"));
+        User existingUser = userDAO.selectUser(id_user);
+        RequestDispatcher dispatcherHousing = request.getRequestDispatcher("user-form.jsp");
+        request.setAttribute("user", existingUser);
         dispatcherHousing.forward(request, response);
 
     }

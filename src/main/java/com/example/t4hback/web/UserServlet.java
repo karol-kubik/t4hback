@@ -148,14 +148,22 @@ public class UserServlet extends HttpServlet {
 
     private void loginUser(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
+        HttpSession session = request.getSession(false);
+        String error = null;
+        String email = null;
+        String password = null;
+        if(session.getAttribute("email") != null && session.getAttribute("password") != null){
+            email = (String) session.getAttribute("email");
+            password = (String) session.getAttribute("password");
+        }
+        else{
+            email = request.getParameter("email");
+            password = request.getParameter("password");
+        }
         User resultUser = userDAO.selectUserByMailPassword(email, password);
-
         if(resultUser != null){
             System.out.println("User found.");
             System.out.println("User ID = " + resultUser.getId());
-            HttpSession session = request.getSession(false);
             session.setAttribute("email", resultUser.getEmail());
             session.setAttribute("password", resultUser.getPassword());
             session.setAttribute("id", new Integer(resultUser.getId()));
@@ -166,6 +174,8 @@ public class UserServlet extends HttpServlet {
             dispatcher.forward(request, response);
         }
         else {
+            error = "Wrong credentials.";
+            session.setAttribute("error", error);
             System.out.println("Wrong credentials.");
             response.sendRedirect("login");
         }

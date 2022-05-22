@@ -307,6 +307,7 @@ public class HousingDAO {
             preparedStatement.setBoolean(10, housing.getPetKeep());
             preparedStatement.setBoolean(11, housing.getPlantWater());
             preparedStatement.setBoolean(12, housing.getHouseClean());
+            preparedStatement.setInt(13, housing.getId_housing());
 
             rowUpdated = preparedStatement.executeUpdate() > 0;
         }

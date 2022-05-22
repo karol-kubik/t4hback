@@ -19,9 +19,9 @@
         </div>
 
         <ul class="navbar-nav">
-            <li><a href="<%=request.getContextPath()%>/housing/list_housing"
-                   class="nav-link">Housings</a></li>
+            <li><a href="home" class="nav-link">Home</a></li>
         </ul>
+
     </nav>
 </header>
 <br>

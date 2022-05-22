@@ -58,8 +58,14 @@ public class HousingPageServlet extends HttpServlet {
         Integer oid = resultHousing.getId_owner();
         User resultHousingOwner = userDAO.selectUser(oid);
         double rating = rentDAO.selectRatingByHousingID(hid);
+        boolean admin = false;
         HttpSession session = request.getSession();
-        boolean admin = (Boolean) session.getAttribute("admin");
+        if (session.getAttribute("admin") != null){
+            admin = (Boolean) session.getAttribute("admin");
+        }
+        else{
+            admin = false;
+        }
         request.setAttribute("resultHousingOwner", resultHousingOwner);
         request.setAttribute("resultHousing", resultHousing);
         request.setAttribute("rating", rating);

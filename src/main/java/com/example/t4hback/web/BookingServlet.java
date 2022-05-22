@@ -45,15 +45,23 @@ public class BookingServlet extends javax.servlet.http.HttpServlet {
             throws SQLException, IOException {
         Date startDate = Date.valueOf(request.getParameter("startDate"));
         Date endDate = Date.valueOf(request.getParameter("endDate"));
-        Integer id_owner = Integer.valueOf(request.getParameter("id_owner"));
-        Integer id_housing = Integer.valueOf(request.getParameter("id_housing"));
-        Integer id_guest = Integer.valueOf(request.getParameter("gid"));
+        int id_housing = Integer.parseInt(request.getParameter("id_housing"));
+        int id_owner = Integer.parseInt(request.getParameter("id_owner"));
+        int id_guest = Integer.parseInt(request.getParameter("id_guest"));
         String state = "requested"; //Requested, validated, rejected, ended
-        Integer eval = null;
+        Integer eval = 0;
         String comment = "";
         Rent newRent = new Rent(id_guest, id_owner, id_housing, startDate, endDate, state, eval, comment);
+        System.out.println("ID guest = " + id_guest);
+        System.out.println("ID owner = " + id_owner);
+        System.out.println("ID housing = " + id_housing);
+        System.out.println("Start Date = " + startDate);
+        System.out.println("End Date = " + endDate);
+        System.out.println("State = " + state);
+        System.out.println("Eval = " + eval);
+        System.out.println("Comment = " + comment);
         rentDAO.insertRent(newRent);
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("home");
     }
 
 }

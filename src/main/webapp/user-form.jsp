@@ -3,105 +3,83 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-<title>User Management Application</title>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	crossorigin="anonymous">
+	<title>Task4Home</title>
+	<link rel="stylesheet"
+		  href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 </head>
 <body>
 
-	<header>
-		<nav class="navbar navbar-expand-md navbar-dark"
-			style="background-color: tomato">
-			<div>
-				<a href="https://www.javaguides.net" class="navbar-brand"> Task4Home </a>
-			</div>
+<header>
 
-			<ul class="navbar-nav">
-				<li><a href="<%=request.getContextPath()%>/list"
-					class="nav-link">Users</a></li>
-			</ul>
-		</nav>
-	</header>
-	<br>
-	<div class="container col-md-5">
-		<div class="card">
-			<div class="card-body">
-				<c:if test="${user != null}">
-					<form action="update" method="post">
-				</c:if>
-				<c:if test="${user == null}">
-					<form action="insert" method="post">
-				</c:if>
-
-				<caption>
-					<h2>
-						<c:if test="${user != null}">
-            			Edit User
-            		</c:if>
-						<c:if test="${user == null}">
-            			Add New User
-            		</c:if>
-					</h2>
-				</caption>
-
-				<c:if test="${user != null}">
-					<input type="hidden" name="id" value="<c:out value='${user.id}' />" />
-				</c:if>
-
-				<fieldset class="form-group">
-					<label>Email</label> <input type="text"
-						value="<c:out value='${user.email}' />" class="form-control"
-						name="email" required="required">
-				</fieldset>
-
-				<fieldset class="form-group">
-					<label>Password</label> <input type="password"
-						value="<c:out value='${user.password}' />" class="form-control"
-						name="password" required="required">
-				</fieldset>
-
-				<fieldset class="form-group">
-					<label>Firstname</label> <input type="text"
-						value="<c:out value='${user.firstname}' />" class="form-control"
-						name="firstname" required="required">
-				</fieldset>
-
-				<fieldset class="form-group">
-					<label>Lastname</label> <input type="text"
-						value="<c:out value='${user.lastname}' />" class="form-control"
-						name="lastname" required="required">
-				</fieldset>
-
-				<fieldset class="form-group">
-					<label>Birthday</label> <input type="text"
-						value="<c:out value='${user.birthday}' />" class="form-control"
-						name="birthday" required="required">
-				</fieldset>
-
-				<fieldset class="form-group">
-					<label>Gender</label> <input type="checkbox"
-						value="<c:out value='${user.gender}' />" class="form-control"
-						name="gender">
-				</fieldset>
-
-				<fieldset class="form-group">
-					<label>Phone</label> <input type="text"
-						value="<c:out value='${user.phone}' />" class="form-control"
-						name="phone" required="required">
-				</fieldset>
-
-				<fieldset class="form-group">
-					<label>Admin ?</label> <input type="checkbox"
-						value="<c:out value='${user.admin}' />" class="form-control"
-						name="admin">
-				</fieldset>
-
-				<button type="submit" class="btn btn-success">Save</button>
-				</form>
-			</div>
-		</div>
+	<div id="imageLogo">
+		<img id="logo" src="/Images/Logo.png" alt="Task4Home Logo">
+		<h1>TASK4<span id="home">HOME</span></h1>
 	</div>
+</header>
+<br>
+<div class="content">
+	<div class="colGauche"></div>
+	<div class="colMilieu">
+			<c:if test="${user != null}">
+			<form action="update_user" method="post">
+			</c:if>
+			<c:if test="${user == null}">
+			<form action="signup" method="post">
+			</c:if>
+
+			<caption>
+				<h2>
+					<c:if test="${user != null}">
+						Edit my Account
+					</c:if>
+					<c:if test="${user == null}">
+						Sign up
+					</c:if>
+				</h2>
+			</caption>
+
+			<c:if test="${user != null}">
+				<input type="hidden" name="id" value="<c:out value='${user.id}' />" />
+			</c:if>
+
+					<c:if test="${error != null}">
+						<p class="error"><c:out value='${error}' /></p>
+					</c:if>
+
+							<input type="text" value="<c:out value='${user.email}' />"
+						   class="form-control" name="email" required="required"
+						   placeholder="e-mail">
+
+					<input type="password"
+							value="<c:out value='${user.password}' />" class="form-control"
+							name="password" required="required" placeholder="password">
+
+					<input type="text" value="<c:out value='${user.firstname}' />"
+						   class="form-control" name="firstname" required="required"
+						   placeholder="First Name">
+
+					<input type="text"
+							value="<c:out value='${user.lastname}' />" class="form-control"
+							name="lastname" required="required" placeholder="Last Name">
+
+					<input type="text" value="<c:out value='${user.birthday}' />"
+						   class="form-control" name="birthday" required="required"
+						   placeholder="Birthday">
+					<input type="text" value="<c:out value='${user.phone}' />" class="form-control"
+							  name="phone" required="required" placeholder="phone number">
+
+					<select name="gender" id="gender">
+						<option value="" disabled selected>Gender</option>
+						<option value="true">male</option>
+						<option value="false">female</option>
+					</select>
+
+				</fieldset>
+				<button type="submit" class="btn btn-success">Register</button>
+			</form>
+
+	</div>
+	<div class="colDroite"></div>
+</div>
 </body>
 </html>
