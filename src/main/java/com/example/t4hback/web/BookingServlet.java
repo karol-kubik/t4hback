@@ -48,7 +48,7 @@ public class BookingServlet extends javax.servlet.http.HttpServlet {
         int id_housing = Integer.parseInt(request.getParameter("id_housing"));
         int id_owner = Integer.parseInt(request.getParameter("id_owner"));
         int id_guest = Integer.parseInt(request.getParameter("id_guest"));
-        String state = "requested"; //Requested, validated, rejected, ended
+        String state = "requested"; //Requested, validated, rejected, closed
         Integer eval = 0;
         String comment = "";
         Rent newRent = new Rent(id_guest, id_owner, id_housing, startDate, endDate, state, eval, comment);

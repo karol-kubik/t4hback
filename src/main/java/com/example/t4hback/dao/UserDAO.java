@@ -6,13 +6,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * AbstractDAO.java This DAO class provides CRUD database operations for the
- * table users in the database.
- * 
- * @author Ramesh Fadatare
- *
- */
 public class UserDAO {
 	private String jdbcURL = "jdbc:mysql://localhost:3306/db_t4h?useSSL=FALSE&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 	private String jdbcUsername = "root";

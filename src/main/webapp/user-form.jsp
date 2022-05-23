@@ -76,6 +76,8 @@
 
 				</fieldset>
 				<button type="submit" class="btn btn-success">Register</button>
+
+				<button id="delete" type="submit" class="buttonType2" onclick="window.location.href='delete_user';">Delete my account</button>
 			</form>
 
 	</div>
