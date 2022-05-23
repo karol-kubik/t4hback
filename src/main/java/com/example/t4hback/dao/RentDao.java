@@ -18,7 +18,7 @@ public class RentDao {
     private static final String SELECT_RENT_BY_GUEST_ID = "select * from rents where id_guest =?;";
     private static final String DELETE_RENT_SQL = "delete from rents where id_rent = ?;";
     private static final String UPDATE_RENT_STATE_SQL = "update rents set state =? where id_rent = ?;";
-    private static final String UPDATE_RENT_STATE_COMMENT_SQL = "update rents set state = 'closed', comment=? where id_rent = ?;";
+    private static final String UPDATE_RENT_STATE_COMMENT_SQL = "update rents set state = 'closed', eval=?, comment=? where id_rent = ?;";
     private static final String SELECT_AVG_RATING_BY_HOUSING_ID = "SELECT AVG(`eval`) FROM `rents` WHERE `id_housing`= ?;";
 
     public RentDao() {
@@ -232,8 +232,9 @@ public class RentDao {
         boolean rowUpdated;
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_RENT_STATE_COMMENT_SQL);) {
-            preparedStatement.setString(1, rent.getComment());
-            preparedStatement.setInt(2, rent.getId_rent());
+            preparedStatement.setInt(1, rent.getEval());
+            preparedStatement.setString(2, rent.getComment());
+            preparedStatement.setInt(3, rent.getId_rent());
 
             rowUpdated = preparedStatement.executeUpdate() > 0;
         }

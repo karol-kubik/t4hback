@@ -112,7 +112,7 @@
                             <p class="card-constraint">Plant watering</p>
                         </c:if>
                     </div>
-                    <p class="card-rating">Rated : <span class="rating">TDB</span>/5</p>
+                    <p class="card-rating">Rating : <span class="rating"><c:out value="${rating}" /></span>/5</p>
                     <button class="card-button buttonType2" onclick="window.location.href='housing_page?hid=<c:out value="${housing.id_housing}" />';"> See more</button>
                 </div>
 

@@ -1,6 +1,8 @@
 package com.example.t4hback.web;
 
 import com.example.t4hback.dao.HousingDAO;
+import com.example.t4hback.dao.RentDao;
+import com.example.t4hback.dao.UserDAO;
 import com.example.t4hback.model.Housing;
 
 import javax.servlet.RequestDispatcher;
@@ -17,9 +19,13 @@ import java.util.List;
 public class HomeServlet extends javax.servlet.http.HttpServlet {
     private static final long serialVersionUID = 1L;
     private HousingDAO housingDAO;
+    private UserDAO userDAO;
+    private RentDao rentDAO;
 
     public void init() {
         housingDAO = new HousingDAO();
+        userDAO = new UserDAO();
+        rentDAO = new RentDao();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -39,6 +45,11 @@ public class HomeServlet extends javax.servlet.http.HttpServlet {
     private void listHousing(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         List<Housing> listHousing = housingDAO.selectAllHousings();
+        double rating = 0.0;
+        for(Housing housing : listHousing){
+            rating = rentDAO.selectRatingByHousingID(housing.getId_housing());
+        }
+        request.setAttribute("rating",rating);
         request.setAttribute("listHousing", listHousing);
         RequestDispatcher dispatcherHousing = request.getRequestDispatcher("home.jsp");
         dispatcherHousing.forward(request, response);
