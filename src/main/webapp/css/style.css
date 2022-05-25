@@ -268,7 +268,6 @@ button:hover {
     border-radius: 15px;
     box-shadow: 0px 8px 15px rgba(25, 25, 25, 0.15);
     display: flex;
-    flex-wrap: wrap;
     width: 75%;
     height: fit-content;
     justify-content: center;
@@ -292,6 +291,7 @@ button:hover {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-basis: 100%;
 }
 
 .card-img {
@@ -299,7 +299,7 @@ button:hover {
     border-radius: 7px;
     display: flex;
     align-items: center;
-    height: 250px;
+    max-width: 100%;
 }
 
 .card-text {
@@ -309,6 +309,7 @@ button:hover {
     flex-direction: column;
     flex-wrap: wrap;
     flex-grow: 0.8;
+    flex-basis: 100%
 }
 
 .card-title {
@@ -599,4 +600,6 @@ button:hover {
     .card-img {
         height: 210px;
     }
+    .card{
+    flex-wrap: wrap;}
 }
