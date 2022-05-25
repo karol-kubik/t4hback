@@ -308,6 +308,7 @@ button:hover {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    flex-grow: 0.8;
 }
 
 .card-title {
