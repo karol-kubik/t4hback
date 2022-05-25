@@ -10,7 +10,7 @@
 <body>
 <header>
     <div id="imageLogo">
-        <img id="logo" src="/Images/Logo.png" alt="Task4Home Logo">
+        <img id="logo" src="./Images/Logo.png" alt="Task4Home Logo">
         <h1>TASK4<span id="home">HOME</span></h1>
     </div>
     <div class="navigation">
@@ -22,7 +22,7 @@
 <br>
 <div class="content">
     <div class="colGauche">
-        <form action="">
+        <form action="search_housing">
 
             <caption>
                 <h2>
@@ -31,12 +31,12 @@
             </caption>
 
             <fieldset class="form-group">
-                <input type="text" value="" class="search-input" name="email" required="required" placeholder="search for a place">
-                <select name="City" id="gender">
+                <input type="text" value="" class="search-input" name="keyword" placeholder="Keywords">
+                <select name="city" id="city">
                     <option value="" disabled selected>City</option>
-                    <option value="city1">city1</option>
-                    <option value="city2">city2</option>
-                    <option value="city3">city3</option>
+                    <option value="Paris">Paris</option>
+                    <option value="Bordeaux">Bordeaux</option>
+                    <option value="Chatou">Bordeaux</option>
                 </select>
 
                 <h3>Constraints :</h3>
@@ -57,14 +57,6 @@
                 <input type="checkbox" name="plantWater" id="plantWater">
                 <label for="plantWater">Plant watering</label>
 
-                <select name="rating" id="rating">
-                    <option value="" disabled selected>minimum rating</option>
-                    <option value="rating1">1/5</option>
-                    <option value="rating2">2/5</option>
-                    <option value="rating3">3/5</option>
-                    <option value="rating4">4/5</option>
-                    <option value="rating5">5/5</option>
-                </select>
             </fieldset>
 
 
@@ -112,7 +104,7 @@
                             <p class="card-constraint">Plant watering</p>
                         </c:if>
                     </div>
-                    <p class="card-rating">Rating : <span class="rating"><c:out value="${rating}" /></span>/5</p>
+                    <p class="card-rating">Rating : <span class="rating"><c:out value="${listRating.get(1)}" /></span>/5</p>
                     <button class="card-button buttonType2" onclick="window.location.href='housing_page?hid=<c:out value="${housing.id_housing}" />';"> See more</button>
                 </div>
 

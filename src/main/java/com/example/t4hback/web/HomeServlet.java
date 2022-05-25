@@ -45,11 +45,6 @@ public class HomeServlet extends javax.servlet.http.HttpServlet {
     private void listHousing(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         List<Housing> listHousing = housingDAO.selectAllHousings();
-        double rating = 0.0;
-        for(Housing housing : listHousing){
-            rating = rentDAO.selectRatingByHousingID(housing.getId_housing());
-        }
-        request.setAttribute("rating",rating);
         request.setAttribute("listHousing", listHousing);
         RequestDispatcher dispatcherHousing = request.getRequestDispatcher("home.jsp");
         dispatcherHousing.forward(request, response);

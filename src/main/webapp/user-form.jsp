@@ -12,7 +12,7 @@
 <header>
 
 	<div id="imageLogo">
-		<img id="logo" src="/Images/Logo.png" alt="Task4Home Logo">
+		<img id="logo" src="./Images/Logo.png" alt="Task4Home Logo">
 		<h1>TASK4<span id="home">HOME</span></h1>
 	</div>
 </header>

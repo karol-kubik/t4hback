@@ -12,7 +12,7 @@
 <header>
 
 	<div id="imageLogo">
-		<img id="logo" src="/Images/Logo.png" alt="Task4Home Logo">
+		<img id="logo" src="./Images/Logo.png" alt="Task4Home Logo">
 		<h1>TASK4<span id="home">HOME</span></h1>
 	</div>
 </header>
@@ -45,7 +45,7 @@
 				<c:if test="${error != null}">
 					<p class="error"><c:out value='${error}' /></p>
 				</c:if>
-
+				<fieldset>
 				<input type="text" value="<c:out value='${user.email}' />"
 					   class="form-control" name="email" required="required"
 					   placeholder="e-mail">

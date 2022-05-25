@@ -18,8 +18,8 @@ public class HousingDAO {
     private static final String SELECT_ALL_HOUSINGS = "select * from housings";
     private static final String DELETE_HOUSING_SQL = "delete from housings where id_housing = ?;";
     private static final String UPDATE_HOUSING_SQL = "UPDATE housings SET id_owner = ?,title= ?, address =?, city = ?,description= ?, noSmoke =?, noiseCurfew = ?,noChild= ?, noPets =?, petKeep = ?,plantWater= ?, houseClean =? where id_housing = ?;";
-    private static final String SELECT_HOUSINGS_BY_CITY = "select id_housing, id_owner, title, address, city, description, noSmoke, noiseCurfew, noChild, noPets, petKeep, plantWater, houseClean from housings where city like ?";
-    private static final String SELECT_HOUSINGS_BY_TITLE = "select id_housing, id_owner, title, address, city, description, noSmoke, noiseCurfew, noChild, noPets, petKeep, plantWater, houseClean from housings where title like ?";
+    private static final String SELECT_HOUSINGS_BY_CITY = "select * from housings where city like ?";
+    private static final String SELECT_HOUSINGS_BY_TITLE = "select * from housings where title like ?";
 
     public HousingDAO() {
     }
@@ -216,7 +216,7 @@ public class HousingDAO {
 
              // Step 2:Create a statement using connection object
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_HOUSINGS_BY_CITY);) {
-            preparedStatement.setString(1,enteredCity);
+            preparedStatement.setString(1,"%"+enteredCity+"%");
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
             ResultSet rs = preparedStatement.executeQuery();
@@ -253,7 +253,7 @@ public class HousingDAO {
 
              // Step 2:Create a statement using connection object
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_HOUSINGS_BY_TITLE);) {
-            preparedStatement.setString(1,enteredTitle);
+            preparedStatement.setString(1,"%"+enteredTitle+"%");
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
             ResultSet rs = preparedStatement.executeQuery();

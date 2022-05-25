@@ -11,12 +11,12 @@
 <body>
 <header>
     <div id="imageLogo">
-        <img id="logo" src="/Images/Logo.png" alt="Task4Home Logo">
+        <img id="logo" src="./Images/Logo.png" alt="Task4Home Logo">
         <h1>TASK4<span id="home">HOME</span></h1>
     </div>
     <div class="navigation">
         <ul>
-            <li><a href="home" class="nav-link">Home</a></li>
+            <li><a href="login" class="nav-link">My account</a></li>
         </ul>
     </div>
 </header>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>User Management Application</title>
+    <link rel="stylesheet" href="./css/style.css" type="text/css">
+</head>
+
+<body>
+    <header>
+        <div id="imageLogo">
+            <img id="logo" src="/Images/Logo.png" alt="Task4Home Logo">
+            <h1>TASK4<span id="home">HOME</span></h1>
+        </div>
+        <div class="navigation">
+            <ul>
+                <li><a href="<%=request.getContextPath()%>/list" class="nav-link">Users</a></li>
+            </ul>
+        </div>
+    </header>
+    <br>
+    <div class="content">
+        <div class="colGauche">
+        </div>
+
+        <div class="colMilieu">
+            <div class="card-section-title">
+                <h2>My housings</h2>
+            </div>
+            <div class="card">
+                <div class="card-img-container">
+                    <img src="https://www.book-a-flat.com/magazine/wp-content/uploads/2016/12/espace-optimise-appartement-meuble-paris.jpg" class="card-img" alt="">
+                </div>
+                <div class="card-text">
+                    <p class="card-title">Cozy & modern flat near Paris</p>
+                    <p class="card-subtitle">in :&nbsp;<span class="">La Garenne-Colombes, Ile de France</span></p>
+                    <div class="card-constraints">
+                        <p class="card-constraint"> Non smoker</p>
+                        <p class="card-constraint"> Noise curfew</p>
+                        <p class="card-constraint"> No children</p>
+                        <p class="card-constraint"> No pets</p>
+                    </div>
+                    <p class="card-subtitle">Looking for :</p>
+                    <div class="card-constraints">
+                        <p class="card-constraint"> Cleaning</p>
+                        <p class="card-constraint"> Plant watering</p>
+                        <p class="card-constraint"> Pet sitting</p>
+                    </div>
+                    <p class="card-rating">Rated : <span class="rating">3.5</span>/5</p>
+                    <div style="display: flex; flex-wrap:wrap;">
+                        <button class="card-button buttonType2"> See more</button>
+                        <button class="card-button buttonType2"> Edit</button>
+                        <button class="card-button buttonType2"> Delete</button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="colDroite"></div>
+    </div>
+
+</body>
+
+</html>

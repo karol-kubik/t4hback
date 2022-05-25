@@ -11,7 +11,7 @@
 <body>
 <header>
 	<div id="imageLogo">
-		<img id="logo" src="/Images/Logo.png" alt="Task4Home Logo">
+		<img id="logo" src="./Images/Logo.png" alt="Task4Home Logo">
 		<h1>TASK4<span id="home">HOME</span></h1>
 	</div>
 	<div class="navigation">
@@ -35,7 +35,7 @@
 			<input type="hidden" name="id_rent" value="<c:out value='${rent.id_rent}' />" />
 
 			<fieldset class="form-group">
-				<select name="rating" id="rating">
+				<select name="eval" id="eval">
 					<option value="" disabled selected>Rating</option>
 					<option value="1">1</option>
 					<option value="2">2</option>
