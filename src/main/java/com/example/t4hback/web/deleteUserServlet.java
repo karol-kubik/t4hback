@@ -14,13 +14,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- * ControllerServlet.java
- * This servlet acts as a page controller for the application, handling all
- * requests from the user.
- * @email Ramesh Fadatare
- */
-
 @WebServlet(name = "deleteUserServlet", value = "/delete_user")
 public class deleteUserServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
