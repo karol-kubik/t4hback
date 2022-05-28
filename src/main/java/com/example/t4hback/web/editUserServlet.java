@@ -53,7 +53,7 @@ public class editUserServlet extends HttpServlet {
         String firstname = request.getParameter("firstname");
         String lastname = request.getParameter("lastname");
         String birthday = request.getParameter("birthday");
-        Boolean gender = Boolean.valueOf(request.getParameter("gender"));
+        String gender = request.getParameter("gender");
         Integer phone = Integer.valueOf(request.getParameter("phone"));
         Boolean admin = false;
 

@@ -11,8 +11,10 @@
 <body>
 <header>
     <div id="imageLogo">
-        <img id="logo" src="./Images/Logo.png" alt="Task4Home Logo">
-        <h1>TASK4<span id="home">HOME</span></h1>
+        <a href="home">
+            <img id="logo" src="./Images/Logo.png" alt="Task4Home Logo" >
+            <h1>TASK4<span id="home">HOME</span></h1>
+        </a>
     </div>
     <div class="navigation">
         <ul>
@@ -54,22 +56,43 @@
                 <textarea name="description" value="<c:out value='${housing.description}' />" placeholder="Description"></textarea>
 
                 <h3>Constraints :</h3>
-                <input type="checkbox" name="noSmoke" id="noSmoke" value="<c:out value='${housing.noSmoke}' />">
-                <label for="noSmoke">Non smoker</label>
-                <input type="checkbox" name="noiseCurfew" id="noiseCurfew" value="<c:out value='${housing.noiseCurfew}' />">
-                <label for="noiseCurfew">Noise curfew</label>
-                <input type="checkbox" name="noChild" id="noChildren" value="<c:out value='${housing.noChild}' />">
-                <label for="noChildren">No children</label>
-                <input type="checkbox" name="noPets" id="noPets" value="<c:out value='${housing.noPets}' />">
-                <label for="noPets">No pets</label>
+                <select name="noSmoke" id="noSmoke">
+                    <option value="" disabled selected>No Smoking ?</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+                <select name="noiseCurfew" id="noiseCurfew">
+                    <option value="" disabled selected>Noise Curfew ?</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+                <select name="noChild" id="noChild">
+                    <option value="" disabled selected>No Children ?</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+                <select name="noPets" id="noPets">
+                    <option value="" disabled selected>No Pets ?</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
 
                 <h3>Looking for :</h3>
-                <input type="checkbox" name="houseClean" id="houseClean" value="<c:out value='${housing.houseClean}' />">
-                <label for="houseClean">House cleaning</label>
-                <input type="checkbox" name="petKeep" id="petKeep" value="<c:out value='${housing.petKeep}' />">
-                <label for="petKeep">Pet keeping</label>
-                <input type="checkbox" name="plantWater" id="plantWater" value="<c:out value='${housing.plantWater}' />">
-                <label for="plantWater">Plant watering</label>
+                <select name="petKeep" id="petKeep">
+                    <option value="" disabled selected>Pet Keeping ?</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+                <select name="plantWater" id="plantWater">
+                    <option value="" disabled selected>Plant Watering ?</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+                <select name="houseClean" id="houseClean">
+                    <option value="" disabled selected>House Cleaning ?</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
 
             </fieldset>
             <c:if test="${housing != null}">

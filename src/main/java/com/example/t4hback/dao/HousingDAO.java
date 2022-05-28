@@ -18,8 +18,11 @@ public class HousingDAO {
     private static final String SELECT_ALL_HOUSINGS = "select * from housings";
     private static final String DELETE_HOUSING_SQL = "delete from housings where id_housing = ?;";
     private static final String UPDATE_HOUSING_SQL = "UPDATE housings SET id_owner = ?,title= ?, address =?, city = ?,description= ?, noSmoke =?, noiseCurfew = ?,noChild= ?, noPets =?, petKeep = ?,plantWater= ?, houseClean =? where id_housing = ?;";
-    private static final String SELECT_HOUSINGS_BY_CITY = "select * from housings where city like ?";
-    private static final String SELECT_HOUSINGS_BY_TITLE = "select * from housings where title like ?";
+    private static final String SELECT_HOUSINGS_BY_CITY = "select * from housings where city like ?;";
+    private static final String SELECT_HOUSINGS_BY_TITLE = "select * from housings where title like ?;";
+    private static final String SELECT_HOUSINGS_BY_CONSTRAINTS = "select * from housings where noSmoke=? AND noiseCurfew=? AND noChild=? AND noPets=?;";
+    private static final String SELECT_HOUSINGS_BY_TASKS = "select * from housings where petKeep=? AND plantWater=? AND houseClean=?;";
+
 
     public HousingDAO() {
     }
@@ -273,6 +276,85 @@ public class HousingDAO {
                 Boolean petKeep = rs.getBoolean("petKeep");
                 Boolean plantWater = rs.getBoolean("plantWater");
                 Boolean houseClean = rs.getBoolean("houseClean");
+                housings.add(new Housing(id_housing,id_owner, title, address, city, description, noSmoke, noiseCurfew, noChild, noPets, petKeep, plantWater, houseClean));
+            }
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
+        return housings;
+    }
+
+    public List<Housing> selectHousingsByConstraints(boolean noSmoke, boolean noiseCurfew, boolean noChild, boolean noPets) {
+
+        // using try-with-resources to avoid closing resources (boiler plate code)
+        List<Housing> housings = new ArrayList<>();
+        // Step 1: Establishing a Connection
+        try (Connection connection = getConnection();
+
+             // Step 2:Create a statement using connection object
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_HOUSINGS_BY_CONSTRAINTS);) {
+            preparedStatement.setBoolean(1,noSmoke);
+            preparedStatement.setBoolean(2,noiseCurfew);
+            preparedStatement.setBoolean(3,noChild);
+            preparedStatement.setBoolean(4,noPets);
+            System.out.println(preparedStatement);
+            // Step 3: Execute the query or update query
+            ResultSet rs = preparedStatement.executeQuery();
+
+            // Step 4: Process the ResultSet object.
+            while (rs.next()) {
+                Integer id_housing = rs.getInt("id_housing");
+                Integer id_owner = rs.getInt("id_owner");
+                String title = rs.getString("title");
+                String address = rs.getString("address");
+                String city = rs.getString("city");
+                String description = rs.getString("description");
+                noSmoke = rs.getBoolean("noSmoke");
+                noiseCurfew = rs.getBoolean("noiseCurfew");
+                noChild = rs.getBoolean("noChild");
+                noPets = rs.getBoolean("noPets");
+                Boolean petKeep = rs.getBoolean("petKeep");
+                Boolean plantWater = rs.getBoolean("plantWater");
+                Boolean houseClean = rs.getBoolean("houseClean");
+                housings.add(new Housing(id_housing,id_owner, title, address, city, description, noSmoke, noiseCurfew, noChild, noPets, petKeep, plantWater, houseClean));
+            }
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
+        return housings;
+    }
+
+    public List<Housing> selectHousingsByConstraints(boolean petKeep, boolean plantWater, boolean houseClean) {
+
+        // using try-with-resources to avoid closing resources (boiler plate code)
+        List<Housing> housings = new ArrayList<>();
+        // Step 1: Establishing a Connection
+        try (Connection connection = getConnection();
+
+             // Step 2:Create a statement using connection object
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_HOUSINGS_BY_TASKS);) {
+            preparedStatement.setBoolean(1,petKeep);
+            preparedStatement.setBoolean(2,plantWater);
+            preparedStatement.setBoolean(3,houseClean);
+            System.out.println(preparedStatement);
+            // Step 3: Execute the query or update query
+            ResultSet rs = preparedStatement.executeQuery();
+
+            // Step 4: Process the ResultSet object.
+            while (rs.next()) {
+                Integer id_housing = rs.getInt("id_housing");
+                Integer id_owner = rs.getInt("id_owner");
+                String title = rs.getString("title");
+                String address = rs.getString("address");
+                String city = rs.getString("city");
+                String description = rs.getString("description");
+                Boolean noSmoke = rs.getBoolean("noSmoke");
+                Boolean noiseCurfew = rs.getBoolean("noiseCurfew");
+                Boolean noChild = rs.getBoolean("noChild");
+                Boolean noPets = rs.getBoolean("noPets");
+                petKeep = rs.getBoolean("petKeep");
+                plantWater = rs.getBoolean("plantWater");
+                houseClean = rs.getBoolean("houseClean");
                 housings.add(new Housing(id_housing,id_owner, title, address, city, description, noSmoke, noiseCurfew, noChild, noPets, petKeep, plantWater, houseClean));
             }
         } catch (SQLException e) {

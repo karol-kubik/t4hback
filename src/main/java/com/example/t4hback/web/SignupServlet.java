@@ -75,7 +75,7 @@ public class SignupServlet extends HttpServlet {
         String firstname = request.getParameter("firstname");
         String lastname = request.getParameter("lastname");
         String birthday = request.getParameter("birthday");
-        Boolean gender = Boolean.valueOf(request.getParameter("gender"));
+        String gender = request.getParameter("gender");
         Integer phone = Integer.valueOf(request.getParameter("phone"));
         Boolean admin = false;
         User newUser = new User(email, password, firstname, lastname, birthday, gender, phone, admin);
@@ -93,7 +93,7 @@ public class SignupServlet extends HttpServlet {
         String firstname = request.getParameter("firstname");
         String lastname = request.getParameter("lastname");
         String birthday = request.getParameter("birthday");
-        Boolean gender = Boolean.valueOf(request.getParameter("gender"));
+        String gender = request.getParameter("gender");
         Integer phone = Integer.valueOf(request.getParameter("phone"));
         Boolean admin = false;
 

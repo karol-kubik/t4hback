@@ -65,7 +65,12 @@ h3 {
     flex-wrap: wrap;
 }
 
-.colGauche,
+.colGauche{
+    float: left;
+    display: block;
+}
+
+
 .colDroite {
     float: left;
     display: flex;

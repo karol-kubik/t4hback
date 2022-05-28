@@ -43,17 +43,16 @@ public class SearchHousingServlet extends javax.servlet.http.HttpServlet {
             throws SQLException, IOException, ServletException {
         String keyword = request.getParameter("keyword");
         String city = request.getParameter("city");
+
         System.out.println("Keyword = " + keyword);
 
-        if(keyword != null && city == null){
-            System.out.println("Keyword not null");
+        if(keyword != null){
             List<Housing> listHousing = housingDAO.selectHousingsByTitle(keyword);
             request.setAttribute("listHousing", listHousing);
             RequestDispatcher dispatcherHousing = request.getRequestDispatcher("home.jsp");
             dispatcherHousing.forward(request, response);
         }
-        else if(keyword == null && city != null){
-            System.out.println("City not null");
+        else if(city != null){
             List<Housing> listHousing = housingDAO.selectHousingsByCity(city);
             request.setAttribute("listHousing", listHousing);
             RequestDispatcher dispatcherHousing = request.getRequestDispatcher("home.jsp");

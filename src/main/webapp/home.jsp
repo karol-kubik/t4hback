@@ -9,9 +9,11 @@
 
 <body>
 <header>
-    <div id="imageLogo">
-        <img id="logo" src="./Images/Logo.png" alt="Task4Home Logo">
-        <h1>TASK4<span id="home">HOME</span></h1>
+    <div id="imageLogo" >
+        <a href="home">
+            <img id="logo" src="./Images/Logo.png" alt="Task4Home Logo" >
+            <h1>TASK4<span id="home">HOME</span></h1>
+        </a>
     </div>
     <div class="navigation">
         <ul>
@@ -32,34 +34,67 @@
 
             <fieldset class="form-group">
                 <input type="text" value="" class="search-input" name="keyword" placeholder="Keywords">
-                <select name="city" id="city">
-                    <option value="" disabled selected>City</option>
-                    <option value="Paris">Paris</option>
-                    <option value="Bordeaux">Bordeaux</option>
-                    <option value="Chatou">Bordeaux</option>
-                </select>
-
-                <h3>Constraints :</h3>
-                <input type="checkbox" name="noSmoke" id="noSmoke">
-                <label for="noSmoke">Non smoker</label><br>
-                <input type="checkbox" name="noiseCurfew" id="noiseCurfew">
-                <label for="noiseCurfew">Noise curfew</label><br>
-                <input type="checkbox" name="noChild" id="noChild">
-                <label for="noChild">No children</label><br>
-                <input type="checkbox" name="noPets" id="noPets">
-                <label for="noPets">No pets</label>
-
-                <h3>Looking for :</h3>
-                <input type="checkbox" name="houseClean" id="houseClean">
-                <label for="houseClean">House cleaning</label><br>
-                <input type="checkbox" name="petKeep" id="petKeep">
-                <label for="petKeep">Pet keeping</label><br>
-                <input type="checkbox" name="plantWater" id="plantWater">
-                <label for="plantWater">Plant watering</label>
 
             </fieldset>
+            <button type="submit" class="btn btn-success">Search</button>
+        </form>
 
+        <form action="search_housing">
 
+            <fieldset class="form-group">
+                <input type="city" value="" class="search-input" name="city" placeholder="City">
+            </fieldset>
+            <button type="submit" class="btn btn-success">Search</button>
+        </form>
+
+        <form action="search_housing_constraints">
+
+                <h3>Constraints :</h3>
+                <select name="noSmoke" id="noSmoke">
+                    <option value="" disabled selected>No Smoking ?</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+                <select name="noiseCurfew" id="noiseCurfew">
+                    <option value="" disabled selected>Noise Curfew ?</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+                <select name="noChild" id="noChild">
+                    <option value="" disabled selected>No Children ?</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+                <select name="noPets" id="noPets">
+                    <option value="" disabled selected>No Pets ?</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+
+            </fieldset>
+            <button type="submit" class="btn btn-success">Search</button>
+        </form>
+
+        <form action="search_housing_tasks">
+
+                <h3>Looking for :</h3>
+                <select name="petKeep" id="petKeep">
+                    <option value="" disabled selected>Pet Keeping ?</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+                <select name="plantWater" id="plantWater">
+                    <option value="" disabled selected>Plant Watering ?</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+                <select name="houseClean" id="houseClean">
+                    <option value="" disabled selected>House Cleaning ?</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+
+            </fieldset>
             <button type="submit" class="btn btn-success">Search</button>
         </form>
     </div>
@@ -104,7 +139,6 @@
                             <p class="card-constraint">Plant watering</p>
                         </c:if>
                     </div>
-                    <p class="card-rating">Rating : <span class="rating"><c:out value="${listRating.get(1)}" /></span>/5</p>
                     <button class="card-button buttonType2" onclick="window.location.href='housing_page?hid=<c:out value="${housing.id_housing}" />';"> See more</button>
                 </div>
 

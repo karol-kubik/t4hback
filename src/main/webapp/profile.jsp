@@ -11,8 +11,10 @@
 <body>
 <header>
     <div id="imageLogo">
-        <img id="logo" src="./Images/Logo.png" alt="Task4Home Logo">
-        <h1>TASK4<span id="home">HOME</span></h1>
+        <a href="home">
+            <img id="logo" src="./Images/Logo.png" alt="Task4Home Logo" >
+            <h1>TASK4<span id="home">HOME</span></h1>
+        </a>
     </div>
     <div class="navigation">
         <ul class="navbar-nav">
@@ -37,13 +39,7 @@
                 </div>
                 <div class="gender">
                     <p class="profile-info-title">Gender :</p>
-                    <p class="profile-info">
-                        <c:if test="${resultUser.gender == false}">
-                            Female
-                        </c:if>
-                        <c:if test="${resultUser.gender == true}">
-                            Male
-                        </c:if></p>
+                    <p class="profile-info"><c:out value="${resultUser.gender}" /></p>
                 </div>
                 <div class="email">
                     <p class="profile-info-title">E-mail :</p>

@@ -13,14 +13,14 @@ public class User {
 	protected String firstname;
 	protected String lastname;
 	protected String birthday;
-	protected Boolean gender;
+	protected String gender;
 	protected Integer phone;
 	protected Boolean admin;
 	
 	public User() {
 	}
 
-	public User(int id, String email, String password, String firstname, String lastname, String birthday, Boolean gender, Integer phone, Boolean admin) {
+	public User(int id, String email, String password, String firstname, String lastname, String birthday, String gender, Integer phone, Boolean admin) {
 		super();
 		this.id = id;
 		this.email = email;
@@ -33,7 +33,7 @@ public class User {
 		this.admin = admin;
 	}
 
-	public User(String email, String password, String firstname, String lastname, String birthday, Boolean gender, Integer phone, Boolean admin) {
+	public User(String email, String password, String firstname, String lastname, String birthday, String gender, Integer phone, Boolean admin) {
 		super();
 		this.email = email;
 		this.password = password;
@@ -93,11 +93,11 @@ public class User {
 		this.birthday = birthday;
 	}
 
-	public Boolean getGender() {
+	public String getGender() {
 		return gender;
 	}
 
-	public void setGender(Boolean gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 
