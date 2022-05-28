@@ -12,8 +12,10 @@
 <header>
 
 	<div id="imageLogo">
-		<img id="logo" src="./Images/Logo.png" alt="Task4Home Logo">
-		<h1>TASK4<span id="home">HOME</span></h1>
+		<a href="home">
+			<img id="logo" src="./Images/Logo.png" alt="Task4Home Logo" >
+			<h1>TASK4<span id="home">HOME</span></h1>
+		</a>
 	</div>
 </header>
 <br>
@@ -62,16 +64,16 @@
 					   value="<c:out value='${user.lastname}' />" class="form-control"
 					   name="lastname" required="required" placeholder="Last Name">
 
-				<input type="text" value="<c:out value='${user.birthday}' />"
-					   class="form-control" name="birthday" required="required"
-					   placeholder="Birthday">
+				<input type="date" class="form-control" name="birthday" required="required" placeholder="Birthday">
+
 				<input type="text" value="<c:out value='${user.phone}' />" class="form-control"
 					   name="phone" required="required" placeholder="phone number">
 
 				<select name="gender" id="gender">
 					<option value="" disabled selected>Gender</option>
-					<option value="true">male</option>
-					<option value="false">female</option>
+					<option value="Male">Male</option>
+					<option value="Female">Female</option>
+					<option value="Other">Other</option>
 				</select>
 
 				</fieldset>

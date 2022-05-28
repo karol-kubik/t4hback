@@ -64,9 +64,8 @@
 					   value="<c:out value='${user.lastname}' />" class="form-control"
 					   name="lastname" required="required" placeholder="Last Name">
 
-				<input type="text" value="<c:out value='${user.birthday}' />"
-					   class="form-control" name="birthday" required="required"
-					   placeholder="Birthday">
+				<input type="date" class="form-control" name="birthday" required="required" placeholder="Birthday">
+
 				<input type="text" value="<c:out value='${user.phone}' />" class="form-control"
 					   name="phone" required="required" placeholder="phone number">
 

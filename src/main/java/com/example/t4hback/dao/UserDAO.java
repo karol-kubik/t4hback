@@ -47,7 +47,7 @@ public class UserDAO {
 			preparedStatement.setString(2, user.getPassword());
 			preparedStatement.setString(3, user.getFirstname());
 			preparedStatement.setString(4, user.getLastname());
-			preparedStatement.setString(5, user.getBirthday());
+			preparedStatement.setDate(5, user.getBirthday());
 			preparedStatement.setString(6, user.getGender());
 			preparedStatement.setInt(7, user.getPhone());
 			preparedStatement.setBoolean(8, false);
@@ -75,7 +75,7 @@ public class UserDAO {
 				String password = rs.getString("password");
 				String firstname = rs.getString("firstname");
 				String lastname = rs.getString("lastname");
-				String birthday = rs.getString("birthday");
+				Date birthday = rs.getDate("birthday");
 				String gender = rs.getString("gender");
 				Integer phone = rs.getInt("phone");
 				Boolean admin = rs.getBoolean("admin");
@@ -106,7 +106,7 @@ public class UserDAO {
 				String password = rs.getString("password");
 				String firstname = rs.getString("firstname");
 				String lastname = rs.getString("lastname");
-				String birthday = rs.getString("birthday");
+				Date birthday = rs.getDate("birthday");
 				String gender = rs.getString("gender");
 				Integer phone = rs.getInt("phone");
 				Boolean admin = rs.getBoolean("admin");
@@ -138,7 +138,7 @@ public class UserDAO {
 				String password = rs.getString("password");
 				String firstname = rs.getString("firstname");
 				String lastname = rs.getString("lastname");
-				String birthday = rs.getString("birthday");
+				Date birthday = rs.getDate("birthday");
 				String gender = rs.getString("gender");
 				Integer phone = rs.getInt("phone");
 				Boolean admin = rs.getBoolean("admin");
@@ -168,7 +168,7 @@ public class UserDAO {
 			preparedStatement.setString(2, user.getPassword());
 			preparedStatement.setString(3, user.getFirstname());
 			preparedStatement.setString(4, user.getLastname());
-			preparedStatement.setString(5, user.getBirthday());
+			preparedStatement.setDate(5, user.getBirthday());
 			preparedStatement.setString(6, user.getGender());
 			preparedStatement.setInt(7, user.getPhone());
 			preparedStatement.setBoolean(8, user.getAdmin());

@@ -50,11 +50,11 @@
 
 							<input type="text" value="<c:out value='${user.email}' />"
 						   class="form-control" name="email" required="required"
-						   placeholder="e-mail">
+						   placeholder="E-mail">
 
 					<input type="password"
 							value="<c:out value='${user.password}' />" class="form-control"
-							name="password" required="required" placeholder="password">
+							name="password" required="required" placeholder="Password">
 
 					<input type="text" value="<c:out value='${user.firstname}' />"
 						   class="form-control" name="firstname" required="required"
@@ -64,11 +64,10 @@
 							value="<c:out value='${user.lastname}' />" class="form-control"
 							name="lastname" required="required" placeholder="Last Name">
 
-					<input type="text" value="<c:out value='${user.birthday}' />"
-						   class="form-control" name="birthday" required="required"
-						   placeholder="Birthday">
+					<input type="date" class="form-control" name="birthday" required="required" placeholder="Birthday">
+
 					<input type="text" value="<c:out value='${user.phone}' />" class="form-control"
-							  name="phone" required="required" placeholder="phone number">
+							  name="phone" required="required" placeholder="Phone number">
 
 				<select name="gender" id="gender">
 					<option value="" disabled selected>Gender</option>
@@ -79,9 +78,9 @@
 
 				</fieldset>
 				<button type="submit" class="btn btn-success">Register</button>
-
-				<button id="delete" type="submit" class="buttonType2" onclick="window.location.href='delete_user';">Delete my account</button>
 			</form>
+
+			<button id="delete" type="submit" class="buttonType2" onclick="window.location.href='delete_user';">Delete my account</button>
 
 	</div>
 	<div class="colDroite"></div>

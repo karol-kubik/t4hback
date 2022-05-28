@@ -43,6 +43,7 @@ public class deleteUserServlet extends HttpServlet {
         Integer uid = (Integer) session.getAttribute("id");
         System.out.println("User to delete = " + uid);
         userDAO.deleteUser(uid);
+        session.invalidate();
         RequestDispatcher dispatcherHousing = request.getRequestDispatcher("home");
         dispatcherHousing.forward(request, response);
     }

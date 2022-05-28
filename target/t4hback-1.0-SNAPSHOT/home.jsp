@@ -108,6 +108,7 @@
                 <div class="card-text">
                     <p class="card-title"><c:out value="${housing.title}" /></p>
                     <p class="card-subtitle">in :&nbsp;<span class=""><c:out value="${housing.city}" /></span></p>
+                    <p class="card-subtitle">Constraints:</p>
                     <div class="card-constraints">
                         <c:if test="${housing.noiseCurfew == true}">
                             <p class="card-constraint">Noise curfew</p>

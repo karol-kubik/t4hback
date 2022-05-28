@@ -12,8 +12,10 @@
 <header>
 
 	<div id="imageLogo">
-		<img id="logo" src="./Images/Logo.png" alt="Task4Home Logo">
-		<h1>TASK4<span id="home">HOME</span></h1>
+		<a href="home">
+			<img id="logo" src="./Images/Logo.png" alt="Task4Home Logo" >
+			<h1>TASK4<span id="home">HOME</span></h1>
+		</a>
 	</div>
 </header>
 <br>
@@ -48,11 +50,11 @@
 
 							<input type="text" value="<c:out value='${user.email}' />"
 						   class="form-control" name="email" required="required"
-						   placeholder="e-mail">
+						   placeholder="E-mail">
 
 					<input type="password"
 							value="<c:out value='${user.password}' />" class="form-control"
-							name="password" required="required" placeholder="password">
+							name="password" required="required" placeholder="Password">
 
 					<input type="text" value="<c:out value='${user.firstname}' />"
 						   class="form-control" name="firstname" required="required"
@@ -62,23 +64,23 @@
 							value="<c:out value='${user.lastname}' />" class="form-control"
 							name="lastname" required="required" placeholder="Last Name">
 
-					<input type="text" value="<c:out value='${user.birthday}' />"
-						   class="form-control" name="birthday" required="required"
-						   placeholder="Birthday">
-					<input type="text" value="<c:out value='${user.phone}' />" class="form-control"
-							  name="phone" required="required" placeholder="phone number">
+					<input type="date" class="form-control" name="birthday" required="required" placeholder="Birthday">
 
-					<select name="gender" id="gender">
-						<option value="" disabled selected>Gender</option>
-						<option value="true">male</option>
-						<option value="false">female</option>
-					</select>
+					<input type="text" value="<c:out value='${user.phone}' />" class="form-control"
+							  name="phone" required="required" placeholder="Phone number">
+
+				<select name="gender" id="gender">
+					<option value="" disabled selected>Gender</option>
+					<option value="Male">Male</option>
+					<option value="Female">Female</option>
+					<option value="Other">Other</option>
+				</select>
 
 				</fieldset>
 				<button type="submit" class="btn btn-success">Register</button>
-
-				<button id="delete" type="submit" class="buttonType2" onclick="window.location.href='delete_user';">Delete my account</button>
 			</form>
+
+			<button id="delete" type="submit" class="buttonType2" onclick="window.location.href='delete_user';">Delete my account</button>
 
 	</div>
 	<div class="colDroite"></div>

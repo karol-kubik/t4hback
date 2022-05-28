@@ -58,40 +58,40 @@
                 <h3>Constraints :</h3>
                 <select name="noSmoke" id="noSmoke">
                     <option value="" disabled selected>No Smoking ?</option>
-                    <option value="1">Yes</option>
-                    <option value="0">No</option>
+                    <option value="true">Yes</option>
+                    <option value="fasle">No</option>
                 </select>
                 <select name="noiseCurfew" id="noiseCurfew">
                     <option value="" disabled selected>Noise Curfew ?</option>
-                    <option value="1">Yes</option>
-                    <option value="0">No</option>
+                    <option value="true">Yes</option>
+                    <option value="fasle">No</option>
                 </select>
                 <select name="noChild" id="noChild">
                     <option value="" disabled selected>No Children ?</option>
-                    <option value="1">Yes</option>
-                    <option value="0">No</option>
+                    <option value="true">Yes</option>
+                    <option value="fasle">No</option>
                 </select>
                 <select name="noPets" id="noPets">
                     <option value="" disabled selected>No Pets ?</option>
-                    <option value="1">Yes</option>
-                    <option value="0">No</option>
+                    <option value="true">Yes</option>
+                    <option value="fasle">No</option>
                 </select>
 
                 <h3>Looking for :</h3>
                 <select name="petKeep" id="petKeep">
                     <option value="" disabled selected>Pet Keeping ?</option>
-                    <option value="1">Yes</option>
-                    <option value="0">No</option>
+                    <option value="true">Yes</option>
+                    <option value="fasle">No</option>
                 </select>
                 <select name="plantWater" id="plantWater">
                     <option value="" disabled selected>Plant Watering ?</option>
-                    <option value="1">Yes</option>
-                    <option value="0">No</option>
+                    <option value="true">Yes</option>
+                    <option value="fasle">No</option>
                 </select>
                 <select name="houseClean" id="houseClean">
                     <option value="" disabled selected>House Cleaning ?</option>
-                    <option value="1">Yes</option>
-                    <option value="0">No</option>
+                    <option value="true">Yes</option>
+                    <option value="fasle">No</option>
                 </select>
 
             </fieldset>

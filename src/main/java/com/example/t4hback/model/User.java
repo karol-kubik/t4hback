@@ -1,5 +1,7 @@
 package com.example.t4hback.model;
 
+import java.sql.Date;
+
 /**
  * User.java
  * This is a model class represents a User entity
@@ -12,7 +14,7 @@ public class User {
 	protected String password;
 	protected String firstname;
 	protected String lastname;
-	protected String birthday;
+	protected Date birthday;
 	protected String gender;
 	protected Integer phone;
 	protected Boolean admin;
@@ -20,7 +22,7 @@ public class User {
 	public User() {
 	}
 
-	public User(int id, String email, String password, String firstname, String lastname, String birthday, String gender, Integer phone, Boolean admin) {
+	public User(int id, String email, String password, String firstname, String lastname, Date birthday, String gender, Integer phone, Boolean admin) {
 		super();
 		this.id = id;
 		this.email = email;
@@ -33,7 +35,7 @@ public class User {
 		this.admin = admin;
 	}
 
-	public User(String email, String password, String firstname, String lastname, String birthday, String gender, Integer phone, Boolean admin) {
+	public User(String email, String password, String firstname, String lastname, Date birthday, String gender, Integer phone, Boolean admin) {
 		super();
 		this.email = email;
 		this.password = password;
@@ -85,11 +87,11 @@ public class User {
 		this.lastname = lastname;
 	}
 
-	public String getBirthday() {
+	public Date getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(String birthday) {
+	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
 

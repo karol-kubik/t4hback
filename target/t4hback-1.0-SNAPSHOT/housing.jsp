@@ -11,8 +11,10 @@
 <body>
 <header>
     <div id="imageLogo">
-        <img id="logo" src="./Images/Logo.png" alt="Task4Home Logo">
-        <h1>TASK4<span id="home">HOME</span></h1>
+        <a href="home">
+            <img id="logo" src="./Images/Logo.png" alt="Task4Home Logo" >
+            <h1>TASK4<span id="home">HOME</span></h1>
+        </a>
     </div>
     <div class="navigation">
         <ul>
@@ -29,7 +31,12 @@
             <div class="housing-infos">
                 <div style="display:flex; flex-wrap:wrap; align-items:center; font-size: 20px; margin-left: 30px;">
                     <p class="housing-city">in :&nbsp;<span><c:out value="${resultHousing.city}" /></span></p>
-                    <p class="housing-rating">Rated :&nbsp;<span><c:out value="${rating}" /></span>/5</p>
+                    <c:if test="${rating == 0}">
+                        <p class="housing-rating">Rated :&nbsp;<span>No ratings</span></p>
+                    </c:if>
+                    <c:if test="${rating != 0}">
+                        <p class="housing-rating">Rated :&nbsp;<span><c:out value="${rating}" /></span>/5</p>
+                    </c:if>
                 </div>
 
                 <div class="gallery">

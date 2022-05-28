@@ -86,6 +86,13 @@ public class newHousingServlet extends javax.servlet.http.HttpServlet {
         Boolean petKeep = Boolean.valueOf(request.getParameter("petKeep"));
         Boolean plantWater = Boolean.valueOf(request.getParameter("plantWater"));
         Boolean houseClean = Boolean.valueOf(request.getParameter("houseClean"));
+        System.out.println("No Smoke = " + noSmoke);
+        System.out.println("Noise = " + noiseCurfew);
+        System.out.println("No Child = " + noChild);
+        System.out.println("No Pets = " + noPets);
+        System.out.println("Pet keep = " + petKeep);
+        System.out.println("Plant water = " + plantWater);
+        System.out.println("House clean = " + houseClean);
         Housing newHousing = new Housing(id_owner, title, address, city, description, noSmoke, noiseCurfew, noChild, noPets, petKeep, plantWater, houseClean);
         housingDAO.insertHousing(newHousing);
         response.sendRedirect("account.jsp");

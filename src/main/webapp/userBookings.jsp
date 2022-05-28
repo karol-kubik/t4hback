@@ -31,28 +31,33 @@
         <div class="card-section-title">
             <h2>My bookings</h2>
         </div>
-        <c:forEach var="listGuestRents" items="${listGuestRents}">
+        <c:forEach var="listGuestRentsFull" items="${listGuestRentsFull}">
             <div class="card">
                 <div class="card-img-container">
                     <img src="https://www.book-a-flat.com/magazine/wp-content/uploads/2016/12/espace-optimise-appartement-meuble-paris.jpg" class="card-img" alt="">
                 </div>
                 <div class="card-text">
-                    <p class="card-title"><c:out value="${listGuestRents.id_housing}" /></p>
-                    <p class="card-subtitle">in :&nbsp;<span class="">city</span></p>
+                    <p class="card-title"><c:out value="${listGuestRentsFull.housingTitle}" /></p>
+                    <p class="card-subtitle">in :&nbsp;<span class=""><c:out value="${listGuestRentsFull.housingAddress}" /></span></p>
                     <div class="card-constraints">
                     </div>
-                    <p class="card-subtitle">Adress :&nbsp<span>address</span></p>
-                    <p class="card-subtitle">Owner :&nbsp<span><c:out value="${listGuestRents.id_owner}" /></span>&nbsp<span>TBD</span></p>
-                    <p class="card-subtitle">Start date :&nbsp<span><c:out value="${listGuestRents.startDate}" /></span></p>
-                    <p class="card-subtitle">End date :&nbsp<span><c:out value="${listGuestRents.endDate}" /></span></p>
-                    <p class="card-subtitle">Current state :&nbsp<span><c:out value="${listGuestRents.state}" /></span></p>
-                    <p class="card-rating">Rating : <span class="rating"><c:out value="${listGuestRents.eval}" /></span>/5</p>
-                    <p class="card-subtitle" style="display: block;">Comment : <span><c:out value="${listGuestRents.comment}" /></span></p>
+                    <c:if test="${listGuestRentsFull.state == 'accepted'}">
+                        <p class="card-subtitle">Address :&nbsp<span><c:out value="${listGuestRentsFull.housingCity}" /></span></p>
+                    </c:if>
+                    <c:if test="${listGuestRentsFull.state == 'closed'}">
+                        <p class="card-subtitle">Address :&nbsp<span><c:out value="${listGuestRentsFull.housingCity}" /></span></p>
+                    </c:if>
+                    <p class="card-subtitle">Owner :&nbsp<span><c:out value="${listGuestRentsFull.ownerFirstname}" /></span>&nbsp<span><c:out value="${listGuestRentsFull.ownerLastname}" /></span></p>
+                    <p class="card-subtitle">Start date :&nbsp<span><c:out value="${listGuestRentsFull.startDate}" /></span></p>
+                    <p class="card-subtitle">End date :&nbsp<span><c:out value="${listGuestRentsFull.endDate}" /></span></p>
+                    <p class="card-subtitle">Current state :&nbsp<span><c:out value="${listGuestRentsFull.state}" /></span></p>
+                    <p class="card-rating">Rating : <span class="rating"><c:out value="${listGuestRentsFull.eval}" /></span>/5</p>
+                    <p class="card-subtitle" style="display: block;">Comment : <span><c:out value="${listGuestRentsFull.comment}" /></span></p>
 
                     <div style="display: flex; flex-wrap:wrap;">
-                        <button class="card-button buttonType2" onclick="window.location.href='housing_page?hid=<c:out value="${listGuestRents.id_housing}" />';"> See more</button>
-                        <c:if test="${listGuestRents.state == 'accepted'}">
-                            <button class="card-button buttonType2" onclick="window.location.href='end_booking?rid=<c:out value='${listGuestRents.id_rent}' />';"> Close booking</button>
+                        <button class="card-button buttonType2" onclick="window.location.href='housing_page?hid=<c:out value="${listGuestRentsFull.id_housing}" />';"> See more</button>
+                        <c:if test="${listGuestRentsFull.state == 'accepted'}">
+                            <button class="card-button buttonType2" onclick="window.location.href='end_booking?rid=<c:out value='${listGuestRentsFull.id_rent}' />';"> Close booking</button>
                         </c:if>
                     </div>
                 </div>
@@ -60,30 +65,29 @@
         </c:forEach>
 
         <div class="card-section-title">
-            <h2>My clients' bookings</h2>
+            <h2>My clients bookings</h2>
         </div>
-        <c:forEach var="listOwnerRents" items="${listOwnerRents}">
+        <c:forEach var="listOwnerRentsFull" items="${listOwnerRentsFull}">
             <div class="card">
                 <div class="card-img-container">
                     <img src="https://www.book-a-flat.com/magazine/wp-content/uploads/2016/12/espace-optimise-appartement-meuble-paris.jpg" class="card-img" alt="">
                 </div>
                 <div class="card-text">
-                    <p class="card-title"><c:out value="${listOwnerRents.id_housing}" /></p>
-                    <p class="card-subtitle">in :&nbsp;<span class="">city</span></p>
+                    <p class="card-title"><c:out value="${listOwnerRentsFull.housingTitle}" /></p>
                     <div class="card-constraints">
                     </div>
-                    <p class="card-subtitle">Guest :&nbsp<span><c:out value="${listOwnerRents.id_owner}" /></span>&nbsp<span>TBD</span></p>
-                    <p class="card-subtitle">Phone :&nbsp<span>phone</span></p>
-                    <p class="card-subtitle">Start date :&nbsp<span><c:out value="${listOwnerRents.startDate}" /></span></p>
-                    <p class="card-subtitle">End date :&nbsp<span><c:out value="${listOwnerRents.endDate}" /></span></p>
-                    <p class="card-subtitle">Current state :&nbsp<span><c:out value="${listOwnerRents.state}" /></span></p>
-                    <p class="card-rating">Rating : <span class="rating"><c:out value="${listOwnerRents.eval}" /></span>/5</p>
-                    <p class="card-subtitle" style="display: block;">Comment : <span><c:out value="${listOwnerRents.comment}" /></span></p>
+                    <p class="card-subtitle">Guest :&nbsp<span><c:out value="${listOwnerRentsFull.guestFirstname}" /></span>&nbsp<span><c:out value="${listOwnerRentsFull.guestLastname}" /></span></p>
+                    <p class="card-subtitle">Phone :&nbsp<span><c:out value="${listOwnerRentsFull.guestPhone}" /></span></p>
+                    <p class="card-subtitle">Start date :&nbsp<span><c:out value="${listOwnerRentsFull.startDate}" /></span></p>
+                    <p class="card-subtitle">End date :&nbsp<span><c:out value="${listOwnerRentsFull.endDate}" /></span></p>
+                    <p class="card-subtitle">Current state :&nbsp<span><c:out value="${listOwnerRentsFull.state}" /></span></p>
+                    <p class="card-rating">Rating : <span class="rating"><c:out value="${listOwnerRentsFull.eval}" /></span>/5</p>
+                    <p class="card-subtitle" style="display: block;">Comment : <span><c:out value="${listOwnerRentsFull.comment}" /></span></p>
 
                     <div style="display: flex; flex-wrap:wrap;">
-                        <c:if test="${listOwnerRents.state == 'requested'}">
-                            <button class="card-button buttonType2" onclick="window.location.href='accept_booking?rid=<c:out value='${listOwnerRents.id_rent}' />';"> Accept proposal</button>
-                            <button class="card-button buttonType2" onclick="window.location.href='reject_booking?rid=<c:out value='${listOwnerRents.id_rent}' />';"> Reject proposal</button>
+                        <c:if test="${listOwnerRentsFull.state == 'requested'}">
+                            <button class="card-button buttonType2" onclick="window.location.href='accept_booking?rid=<c:out value='${listOwnerRentsFull.id_rent}' />';"> Accept proposal</button>
+                            <button class="card-button buttonType2" onclick="window.location.href='reject_booking?rid=<c:out value='${listOwnerRentsFull.id_rent}' />';"> Reject proposal</button>
                         </c:if>
                     </div>
                 </div>

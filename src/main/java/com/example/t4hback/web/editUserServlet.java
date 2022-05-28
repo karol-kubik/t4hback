@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -52,7 +53,7 @@ public class editUserServlet extends HttpServlet {
         String password = request.getParameter("password");
         String firstname = request.getParameter("firstname");
         String lastname = request.getParameter("lastname");
-        String birthday = request.getParameter("birthday");
+        Date birthday = Date.valueOf(request.getParameter("birthday"));
         String gender = request.getParameter("gender");
         Integer phone = Integer.valueOf(request.getParameter("phone"));
         Boolean admin = false;
