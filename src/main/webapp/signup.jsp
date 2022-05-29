@@ -47,6 +47,7 @@
 				<c:if test="${error != null}">
 					<p class="error"><c:out value='${error}' /></p>
 				</c:if>
+				
 				<fieldset>
 				<input type="text" value="<c:out value='${user.email}' />"
 					   class="form-control" name="email" required="required"
