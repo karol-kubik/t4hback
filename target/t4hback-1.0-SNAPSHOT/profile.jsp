@@ -52,6 +52,11 @@
             </div>
             <div class="edit-profile-button">
                 <button class="buttonType2" onlick="account.jsp">Contact user</button>
+                <c:if test="${admin != null}">
+                    <c:if test="${admin == true}">
+                        <button id="delete" type="submit" class="buttonType2" onclick="window.location.href='admin_delete_user?uid=<c:out value="${resultUser.id}" />';">Admin : Delete user account</button>
+                    </c:if>
+                </c:if>
             </div>
 
         </div>
