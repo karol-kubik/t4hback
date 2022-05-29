@@ -24,7 +24,7 @@
 <br>
 <div class="content">
     <div class="colGauche">
-        <form action="search_housing">
+        <form class="search-card" action="search_housing">
 
             <caption>
                 <h2>
@@ -39,15 +39,15 @@
             <button type="submit" class="btn btn-success">Search</button>
         </form>
 
-        <form action="search_housing">
+        <form class="search-card" action="search_housing">
 
             <fieldset class="form-group">
-                <input type="city" value="" class="search-input" name="city" placeholder="City">
+                <input type="text" value="" class="search-input" name="city" placeholder="City">
             </fieldset>
             <button type="submit" class="btn btn-success">Search</button>
         </form>
 
-        <form action="search_housing_constraints">
+        <form class="search-card" action="search_housing_constraints">
 
                 <h3>Constraints :</h3>
                 <select name="noSmoke" id="noSmoke">
@@ -75,7 +75,7 @@
             <button type="submit" class="btn btn-success">Search</button>
         </form>
 
-        <form action="search_housing_tasks">
+        <form class="search-card" action="search_housing_tasks">
 
                 <h3>Looking for :</h3>
                 <select name="petKeep" id="petKeep">
