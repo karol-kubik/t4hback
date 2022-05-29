@@ -627,4 +627,8 @@ button:hover {
     .card {
         flex-wrap: wrap;
     }
+    .content-tile-housing,
+    .owner-tile-housing {
+        width: auto;
+    }
 }
