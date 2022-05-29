@@ -70,6 +70,7 @@ h3 {
     display: flex;
     flex-basis: 20%;
     flex-direction: column;
+    align-items: center;
 }
 
 .colDroite {
@@ -235,7 +236,8 @@ button {
     transition: 0.2s ease-in-out;
     font-size: 20px;
     color: white;
-    margin: 20px
+    margin: 20px;
+    width: fit-content;
 }
 
 button:hover {
@@ -262,6 +264,19 @@ button:hover {
 
 .error {
     color: red;
+}
+
+
+/* Recherche sur page d'accueil*/
+
+.search-card {
+    width: 75%;
+    margin: 10px;
+    padding-left: 20px;
+}
+
+.search-select {
+    margin: 5px 0px;
 }
 
 
