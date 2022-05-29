@@ -236,7 +236,8 @@ button {
     transition: 0.2s ease-in-out;
     font-size: 20px;
     color: white;
-    margin: 20px
+    margin: 20px;
+    width: fit-content;
 }
 
 button:hover {
@@ -271,6 +272,11 @@ button:hover {
 .search-card {
     width: 75%;
     margin: 10px;
+    padding-left: 20px;
+}
+
+.search-select {
+    margin: 5px 0px;
 }
 
 

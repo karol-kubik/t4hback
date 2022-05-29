@@ -50,22 +50,22 @@
         <form class="search-card" action="search_housing_constraints">
 
                 <h3>Constraints :</h3>
-                <select name="noSmoke" id="noSmoke">
+                <select class="search-select" name="noSmoke" id="noSmoke">
                     <option value="" disabled selected>No Smoking ?</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </select>
-                <select name="noiseCurfew" id="noiseCurfew">
+                <select class="search-select" name="noiseCurfew" id="noiseCurfew">
                     <option value="" disabled selected>Noise Curfew ?</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </select>
-                <select name="noChild" id="noChild">
+                <select class="search-select" name="noChild" id="noChild">
                     <option value="" disabled selected>No Children ?</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </select>
-                <select name="noPets" id="noPets">
+                <select class="search-select" name="noPets" id="noPets">
                     <option value="" disabled selected>No Pets ?</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
@@ -78,17 +78,17 @@
         <form class="search-card" action="search_housing_tasks">
 
                 <h3>Looking for :</h3>
-                <select name="petKeep" id="petKeep">
+                <select class="search-select" name="petKeep" id="petKeep">
                     <option value="" disabled selected>Pet Keeping ?</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </select>
-                <select name="plantWater" id="plantWater">
+                <select class="search-select" name="plantWater" id="plantWater">
                     <option value="" disabled selected>Plant Watering ?</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </select>
-                <select name="houseClean" id="houseClean">
+                <select class="search-select" name="houseClean" id="houseClean">
                     <option value="" disabled selected>House Cleaning ?</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
